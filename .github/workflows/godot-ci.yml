@@ -3,12 +3,12 @@ name: Godot CI/CD Pipeline
 on: [push, pull_request]
 
 env:
-  GODOT_VERSION: "4.2.1"
+  GODOT_VERSION: "4.3"
   GODOT_STATUS: "stable"
 jobs:
   import-assets:
     runs-on: ubuntu-latest
-    container: barichello/godot-ci:4.2.1
+    container: barichello/godot-ci:4.3
     steps:
       - uses: actions/checkout@v4
       - name: Cache import assets
@@ -33,7 +33,7 @@ jobs:
           sudo apt install wine64
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_ENV
       - name: Export Game using Godot
-        uses: firebelley/godot-export@v5.2.1
+        uses: firebelley/godot-export@v6.0.0
         with:
           godot_executable_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}/Godot_v${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}_linux.x86_64.zip"
           godot_export_templates_download_url: "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}/Godot_v${{ env.GODOT_VERSION }}-${{ env.GODOT_STATUS }}_export_templates.tpz"
