@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=10 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://oxnaucckn13a" path="res://player/player.tscn" id="3_4ybs0"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
 [ext_resource type="Texture2D" uid="uid://cc4rl3l3nqb66" path="res://world/world.png" id="3_p0pxa"]
+[ext_resource type="PackedScene" uid="uid://bbvrju86r3jwp" path="res://pad/pad.tscn" id="4_gq4tn"]
 [ext_resource type="Texture2D" uid="uid://ihb5j22pfjcg" path="res://pad/pad.png" id="4_v3qh1"]
 [ext_resource type="PackedScene" uid="uid://c1xhiv27t7qn2" path="res://walls/walls.tscn" id="5_65yve"]
 
@@ -13,28 +14,37 @@
 script = ExtResource("1_objyc")
 
 [node name="PlayerController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_wj0lw")]
-player = NodePath("../Player")
+player = NodePath("../Pad/Player")
 
 [node name="Water" type="Parallax2D" parent="."]
 repeat_size = Vector2(0, 432)
+autoscroll = Vector2(0, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="Water"]
 position = Vector2(0, 216)
 texture = ExtResource("3_p0pxa")
 flip_v = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Water"]
-texture = ExtResource("3_p0pxa")
+[node name="Pad2" parent="." instance=ExtResource("4_gq4tn")]
+position = Vector2(62, 136)
 
-[node name="Player" parent="." instance=ExtResource("3_4ybs0")]
+[node name="Pad3" parent="." instance=ExtResource("4_gq4tn")]
+position = Vector2(-83, 286)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Pad" parent="." instance=ExtResource("4_gq4tn")]
+
+[node name="Player" parent="Pad" instance=ExtResource("3_4ybs0")]
+collision_layer = 2
+
+[node name="Camera2D" type="Camera2D" parent="Pad/Player"]
+offset = Vector2(0, 35)
 limit_left = 0
 limit_right = 191
 position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 
 [node name="Walls" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_65yve")]
-player = NodePath("../Player")
+player = NodePath("../Pad/Player")
 
 [node name="Trees2" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1, 1.15)

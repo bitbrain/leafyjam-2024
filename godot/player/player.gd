@@ -1,12 +1,23 @@
 class_name Player extends CharacterBody2D
 
 
-@export var ACCELERATION = 550
-@export var FRICTION = 70
-@export var MAX_SPEED = 75
+@export var ACCELERATION = 1550
+@export var FRICTION = 1520
+@export var MAX_SPEED = 155
+
+
+@onready var steerable_detector: Area2D = $SteerableDetector
 
 
 var input_vector = Vector2.ZERO
+
+
+var steerable:Area2D
+
+
+func _ready() -> void:
+	steerable_detector.area_entered.connect(_on_steerable_entered)
+	steerable_detector.area_exited.connect(_on_steerable_exited)
 	
 
 func move(input_vector:Vector2) -> void:
@@ -19,3 +30,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	move_and_slide()
+	
+	
+func _on_steerable_entered(area:Area2D) -> void:
+	steerable = area
+	
+	
+func _on_steerable_exited(area:Area2D) -> void:
+	steerable = null
