@@ -1,9 +1,10 @@
 class_name Player extends CharacterBody2D
 
 
-@export var ACCELERATION = 1550
+@export var ACCELERATION = 150
 @export var FRICTION = 1520
-@export var MAX_SPEED = 155
+@export var MAX_SPEED = 15
+@export var ROW_STRENGTH = 20.0
 
 
 @onready var steerable_detector: Area2D = $SteerableDetector
@@ -36,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if steerable and input_vector != Vector2.ZERO:
-		var force = Vector2(input_vector.x * 50, 0)  # Adjust the multiplier as needed
+		var force = Vector2(input_vector.x * ROW_STRENGTH, 0)  # Adjust the multiplier as needed
 		steerable.get_parent().apply_central_force(force)
 	
 	

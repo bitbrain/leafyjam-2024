@@ -7,4 +7,3 @@ script = ExtResource("1_p45am")
 spawn_offset = Vector2(0, 250)
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true

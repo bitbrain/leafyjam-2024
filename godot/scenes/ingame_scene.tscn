@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=14 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://oxnaucckn13a" path="res://player/player.tscn" id="3_4ybs0"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
 [ext_resource type="Texture2D" uid="uid://cc4rl3l3nqb66" path="res://world/world.png" id="3_p0pxa"]
-[ext_resource type="PackedScene" uid="uid://bbvrju86r3jwp" path="res://pad/pad.tscn" id="4_gq4tn"]
+[ext_resource type="PackedScene" uid="uid://bbvrju86r3jwp" path="res://objects/pad/pad.tscn" id="4_gq4tn"]
 [ext_resource type="PackedScene" uid="uid://c1xhiv27t7qn2" path="res://walls/walls.tscn" id="5_65yve"]
 [ext_resource type="PackedScene" uid="uid://ddhqd41lhqtbp" path="res://spawn/object_spawner.tscn" id="6_owfsg"]
+[ext_resource type="PackedScene" uid="uid://crxqptxfb2d8n" path="res://objects/rock/rock.tscn" id="7_qlyym"]
 [ext_resource type="Texture2D" uid="uid://bsol8p8y1gafb" path="res://world/Bottom leaves.png" id="8_y4kph"]
 [ext_resource type="Texture2D" uid="uid://bbyi43cbereq3" path="res://world/Branches.png" id="9_1ycit"]
 [ext_resource type="Texture2D" uid="uid://dsffv31bl7o7x" path="res://world/Top leaves.png" id="10_eoelr"]
@@ -18,11 +19,6 @@ script = ExtResource("1_objyc")
 
 [node name="PlayerController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_wj0lw")]
 player = NodePath("../Objects/Pad/Player")
-
-[node name="PadSpawner" parent="." instance=ExtResource("6_owfsg")]
-min_interval = 3.0
-max_interval = 6.0
-scene = ExtResource("4_gq4tn")
 
 [node name="Water" type="Parallax2D" parent="."]
 repeat_size = Vector2(0, 432)
@@ -36,7 +32,7 @@ flip_v = true
 [node name="Objects" type="Node2D" parent="." groups=["Objects"]]
 
 [node name="Pad" parent="Objects" instance=ExtResource("4_gq4tn")]
-linear_damp = 2.0
+linear_damp = 3.0
 
 [node name="Player" parent="Objects/Pad" instance=ExtResource("3_4ybs0")]
 collision_layer = 2
@@ -48,10 +44,15 @@ limit_right = 191
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Objects/Pad/Player"]
-remote_path = NodePath("../../../../PadSpawner")
-update_rotation = false
-update_scale = false
+[node name="PadSpawner" parent="Objects/Pad/Player" instance=ExtResource("6_owfsg")]
+min_interval = 5.0
+max_interval = 10.0
+scene = ExtResource("4_gq4tn")
+
+[node name="RockSpawner" parent="Objects/Pad/Player" instance=ExtResource("6_owfsg")]
+min_interval = 4.0
+max_interval = 8.0
+scene = ExtResource("7_qlyym")
 
 [node name="Walls" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_65yve")]
 player = NodePath("../Objects/Pad/Player")
