@@ -1,7 +1,7 @@
 ## Script that manages saving games.
 class_name SaveGame extends Node
 
-const ENABLED = true
+const ENABLED = false
 const ENCRYPTION_KEY = "godotrules"
 const SAVE_GAME_TEMPLATE = "savegame.save"
 const SAVE_GROUP_NAME = "Persist"

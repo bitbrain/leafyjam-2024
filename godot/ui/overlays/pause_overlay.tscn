@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://jyv4g54adkmo"]
+[gd_scene load_steps=4 format=3 uid="uid://jyv4g54adkmo"]
 
 [ext_resource type="Script" path="res://ui/overlays/pause_overlay.gd" id="1_q2yda"]
+[ext_resource type="FontFile" uid="uid://bh7mc8kkwafso" path="res://fonts/alkhemikal/alkhemikal-21.fnt" id="2_kyhjq"]
 [ext_resource type="PackedScene" uid="uid://nbaodrlopo7y" path="res://ui/components/game_settings.tscn" id="2_n78uc"]
 
 [node name="PauseOverlay" type="CenterContainer"]
@@ -16,7 +17,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer3"]
 layout_mode = 2
-theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 0.34902)
+theme_override_fonts/font = ExtResource("2_kyhjq")
 text = "game_paused"
 horizontal_alignment = 1
 

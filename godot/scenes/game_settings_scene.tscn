@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://g4qhvbvdm62w"]
+[gd_scene load_steps=6 format=3 uid="uid://g4qhvbvdm62w"]
 
 [ext_resource type="Script" path="res://scenes/game_settings_scene.gd" id="1_3764u"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_w6tmj"]
+[ext_resource type="FontFile" uid="uid://bh7mc8kkwafso" path="res://fonts/alkhemikal/alkhemikal-21.fnt" id="2_ahong"]
 [ext_resource type="PackedScene" uid="uid://nbaodrlopo7y" path="res://ui/components/game_settings.tscn" id="2_qsqie"]
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="3_unbh4"]
 
@@ -23,7 +24,7 @@ theme_override_constants/separation = 20
 
 [node name="SettingsLabel" type="Label" parent="UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_type_variation = &"HeaderLarge"
+theme_override_fonts/font = ExtResource("2_ahong")
 text = "settings"
 
 [node name="GameSettings" parent="UI/CenterContainer/VBoxContainer" instance=ExtResource("2_qsqie")]
