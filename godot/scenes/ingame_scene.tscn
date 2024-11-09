@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=13 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
 [ext_resource type="Texture2D" uid="uid://cc4rl3l3nqb66" path="res://world/world.png" id="3_p0pxa"]
 [ext_resource type="PackedScene" uid="uid://bbvrju86r3jwp" path="res://pad/pad.tscn" id="4_gq4tn"]
-[ext_resource type="Texture2D" uid="uid://ihb5j22pfjcg" path="res://pad/pad.png" id="4_v3qh1"]
 [ext_resource type="PackedScene" uid="uid://c1xhiv27t7qn2" path="res://walls/walls.tscn" id="5_65yve"]
 [ext_resource type="PackedScene" uid="uid://ddhqd41lhqtbp" path="res://spawn/object_spawner.tscn" id="6_owfsg"]
+[ext_resource type="Texture2D" uid="uid://bsol8p8y1gafb" path="res://world/Bottom leaves.png" id="8_y4kph"]
+[ext_resource type="Texture2D" uid="uid://bbyi43cbereq3" path="res://world/Branches.png" id="9_1ycit"]
+[ext_resource type="Texture2D" uid="uid://dsffv31bl7o7x" path="res://world/Top leaves.png" id="10_eoelr"]
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -54,133 +56,24 @@ update_scale = false
 [node name="Walls" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_65yve")]
 player = NodePath("../Objects/Pad/Player")
 
-[node name="Trees2" type="Parallax2D" parent="."]
-scroll_scale = Vector2(1, 1.15)
+[node name="BottomLeaves" type="Parallax2D" parent="."]
 repeat_size = Vector2(0, 432)
 
-[node name="Sprite2D" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-183, 232)
-texture = ExtResource("4_v3qh1")
+[node name="Sprite2D" type="Sprite2D" parent="BottomLeaves"]
+texture = ExtResource("8_y4kph")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-183, -82)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-185, 97)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-184, 20)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D5" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-188, 166)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D6" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-182, -54)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D7" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(181.5, 230.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D8" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(181.5, -83.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D9" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(179.5, 95.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D10" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(180.5, 18.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D11" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(176.5, 164.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D12" type="Sprite2D" parent="Trees2"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(182.5, -55.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Trees" type="Parallax2D" parent="."]
-scroll_scale = Vector2(1, 1.3)
+[node name="Branches" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 1.1)
 repeat_size = Vector2(0, 432)
 
-[node name="Sprite2D" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-200.5, 273.5)
-texture = ExtResource("4_v3qh1")
+[node name="Sprite2D" type="Sprite2D" parent="Branches"]
+texture = ExtResource("9_1ycit")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-200.5, -40.5)
-texture = ExtResource("4_v3qh1")
+[node name="TopLeaves" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 432)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-202.5, 138.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-201.5, 61.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D5" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-205.5, 207.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D6" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(-199.5, -12.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D7" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(197.5, 273.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D8" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(197.5, -40.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D9" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(195.5, 138.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D10" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(196.5, 61.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D11" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(192.5, 207.5)
-texture = ExtResource("4_v3qh1")
-
-[node name="Sprite2D12" type="Sprite2D" parent="Trees"]
-modulate = Color(0.893348, 0.240944, 0.403162, 1)
-position = Vector2(198.5, -12.5)
-texture = ExtResource("4_v3qh1")
+[node name="Sprite2D" type="Sprite2D" parent="TopLeaves"]
+texture = ExtResource("10_eoelr")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
