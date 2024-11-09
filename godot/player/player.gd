@@ -31,6 +31,10 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	move_and_slide()
 	
+	if steerable and input_vector != Vector2.ZERO:
+		var force = Vector2(input_vector.x * 50, 0)  # Adjust the multiplier as needed
+		steerable.get_parent().apply_central_force(force)
+	
 	
 func _on_steerable_entered(area:Area2D) -> void:
 	steerable = area

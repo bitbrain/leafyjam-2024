@@ -25,13 +25,8 @@ position = Vector2(0, 216)
 texture = ExtResource("3_p0pxa")
 flip_v = true
 
-[node name="Pad2" parent="." instance=ExtResource("4_gq4tn")]
-position = Vector2(62, 136)
-
-[node name="Pad3" parent="." instance=ExtResource("4_gq4tn")]
-position = Vector2(-83, 286)
-
 [node name="Pad" parent="." instance=ExtResource("4_gq4tn")]
+linear_damp = 2.0
 
 [node name="Player" parent="Pad" instance=ExtResource("3_4ybs0")]
 collision_layer = 2

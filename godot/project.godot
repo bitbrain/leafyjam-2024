@@ -105,7 +105,8 @@ locale/translations=PackedStringArray("res://i18n/translation.de.translation", "
 
 [physics]
 
-2d/default_gravity=5.0
+2d/default_gravity=80.0
+2d/default_linear_damp=20.0
 
 [rendering]
 
