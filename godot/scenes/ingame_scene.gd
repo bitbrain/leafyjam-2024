@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var fade_overlay = %FadeOverlay
 @onready var pause_overlay = %PauseOverlay
+@onready var acorn_count: Control = %AcornCount
+@onready var player: Player = %Player
+
 
 func _ready() -> void:
 	fade_overlay.visible = true
@@ -10,6 +13,7 @@ func _ready() -> void:
 		SaveGame.load_game(get_tree())
 	
 	pause_overlay.game_exited.connect(_save_game)
+	player.acorn_collected.connect(acorn_count.collect_acorn)
 
 func _input(event) -> void:
 	if event.is_action_pressed("pause") and not pause_overlay.visible:

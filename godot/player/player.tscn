@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://oxnaucckn13a"]
+[gd_scene load_steps=8 format=3 uid="uid://oxnaucckn13a"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_v8ddu"]
 [ext_resource type="Texture2D" uid="uid://clkfpdw2qmcj0" path="res://player/frog.png" id="2_bry4v"]
@@ -13,6 +13,9 @@ radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a6anu"]
 radius = 60.0083
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2qu01"]
+radius = 60.407
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -47,3 +50,10 @@ disabled = true
 [node name="BoardedShape" type="CollisionShape2D" parent="BoardingDetecor"]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_a6anu")
+
+[node name="AcornDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AcornDetector"]
+shape = SubResource("CircleShape2D_2qu01")

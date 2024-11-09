@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://dbjkc16bvcrmu"
+path="res://.godot/imported/alkhemikal-16.fnt-22eea6688d2364cf195d4275eee625ea.fontdata"
+
+[deps]
+
+source_file="res://fonts/alkhemikal/alkhemikal-16.fnt"
+dest_files=["res://.godot/imported/alkhemikal-16.fnt-22eea6688d2364cf195d4275eee625ea.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=false
+scaling_mode=0

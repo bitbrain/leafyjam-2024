@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://cjwyigvgyltqh"
+path="res://.godot/imported/alkhemikal-12.fnt-9b6844e7d56e582ab2f08ce769a196a5.fontdata"
+
+[deps]
+
+source_file="res://fonts/alkhemikal/alkhemikal-12.fnt"
+dest_files=["res://.godot/imported/alkhemikal-12.fnt-9b6844e7d56e582ab2f08ce769a196a5.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=false
+scaling_mode=0

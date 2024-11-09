@@ -1,6 +1,9 @@
 class_name Player extends CharacterBody2D
 
 
+signal acorn_collected(position:Vector2)
+
+
 @export var ACCELERATION = 150
 @export var FRICTION = 1520
 @export var MAX_SPEED = 155
@@ -14,6 +17,7 @@ class_name Player extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var boarded_shape: CollisionShape2D = %BoardedShape
 @onready var swimming_shape: CollisionShape2D = %SwimmingShape
+@onready var acorn_detector: Area2D = $AcornDetector
 
 
 
@@ -30,6 +34,7 @@ func _ready() -> void:
 	steerable_detector.area_entered.connect(_on_steerable_entered)
 	steerable_detector.area_exited.connect(_on_steerable_exited)
 	boarding_detecor.area_entered.connect(_hop_on)
+	acorn_detector.body_entered.connect(_collect_acorn)
 	
 
 func move(input_vector:Vector2) -> void:
@@ -134,3 +139,8 @@ func _row() -> void:
 	if steerable:
 		var force = Vector2(row_vector.x * ROW_STRENGTH, max(0.0, row_vector.y * ROW_STRENGTH))
 		steerable.get_parent().apply_central_force(force)
+		
+		
+func _collect_acorn(acorn:RigidBody2D) -> void:
+	acorn_collected.emit(acorn.global_position)
+	acorn.queue_free()
