@@ -72,14 +72,14 @@ func _physics_process(delta: float) -> void:
 	
 func _on_steerable_entered(area:Area2D) -> void:
 	steerable = area
-	steerable.get_parent().sinking.connect(_hop_off)
+	steerable.get_parent().sunk.connect(_hop_off)
 	steerable.get_parent().immune_to_sinking = false
 	
 	
 	
 func _on_steerable_exited(area:Area2D) -> void:
 	if steerable:
-		steerable.get_parent().sinking.disconnect(_hop_off)
+		steerable.get_parent().sunk.disconnect(_hop_off)
 	steerable = null
 	
 	
