@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dxa6xrhmewvcr" path="res://spawn/auto_freeable.tscn" id="2_dxt5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wginx"]
-size = Vector2(56, 7)
+size = Vector2(56, 14.625)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvhps"]
 radius = 29.0172
@@ -22,20 +22,20 @@ angular_damp = 10.0
 texture = ExtResource("1_qgu72")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -28)
+position = Vector2(2, -21.3125)
 shape = SubResource("RectangleShape2D_wginx")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 32)
+position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_wginx")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-33, 0)
+position = Vector2(-17, 2)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_wginx")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
-position = Vector2(33, 2)
+position = Vector2(21, 1)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_wginx")
 
@@ -47,3 +47,4 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_mvhps")
 
 [node name="AutoFreeable" parent="." instance=ExtResource("2_dxt5i")]
+metadata/_edit_lock_ = true

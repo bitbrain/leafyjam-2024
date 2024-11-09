@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 
 
 @onready var steerable_detector: Area2D = $SteerableDetector
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 
 var input_vector = Vector2.ZERO
@@ -22,6 +23,9 @@ func _ready() -> void:
 
 func move(input_vector:Vector2) -> void:
 	self.input_vector = input_vector.normalized()
+	
+	if self.input_vector.x != 0:
+		sprite_2d.scale.x = 1 if input_vector.x < 0 else -1
 
 
 func _physics_process(delta: float) -> void:
