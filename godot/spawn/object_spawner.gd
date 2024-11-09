@@ -6,7 +6,7 @@ extends Node2D
 @export var spawn_offset:Vector2
 @export var spawn_width = 100.0
 @export var spawn_limit = 3
-@export var scene:PackedScene
+@export var spawnables:Array[Spawnable]
 
 
 @onready var timer: Timer = $Timer
@@ -28,11 +28,27 @@ func _on_timeout() -> void:
 	timer.wait_time = min_interval + randomizer.randf_range(0.0, max_interval - min_interval)
 	if current_spawn_count == spawn_limit:
 		return
-	var scene = scene.instantiate()
-	objects.add_child(scene)
+	var spawnable_scene = _get_spawnable_scene()
+	var instance = spawnable_scene.instantiate()
+	objects.add_child(instance)
 	
-	scene.position.x = randomizer.randf_range(-spawn_width / 2.0, spawn_width / 2.0)
-	scene.global_position = global_position + spawn_offset
+	instance.position.x = randomizer.randf_range(-spawn_width / 2.0, spawn_width / 2.0)
+	instance.global_position = global_position + spawn_offset
 	current_spawn_count += 1
-	scene.tree_exiting.connect(func(): current_spawn_count -= 1)
+	instance.tree_exiting.connect(func(): current_spawn_count -= 1)
 	
+
+func _get_spawnable_scene() -> PackedScene:
+	var total_weight = 0.0
+	for spawnable in spawnables:
+		total_weight += spawnable.probability
+	
+	var random_value = randomizer.randf() * total_weight
+	
+	var cumulative_weight = 0.0
+	for spawnable in spawnables:
+		cumulative_weight += spawnable.probability
+		if random_value <= cumulative_weight:
+			return spawnable.scene  # Return the selected scene
+	
+	return spawnables[0].scene

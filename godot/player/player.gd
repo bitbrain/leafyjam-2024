@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 
 @export var ACCELERATION = 150
 @export var FRICTION = 1520
-@export var MAX_SPEED = 15
+@export var MAX_SPEED = 55
 @export var ROW_STRENGTH = 20.0
 
 
@@ -46,6 +46,7 @@ func _physics_process(delta: float) -> void:
 func _on_steerable_entered(area:Area2D) -> void:
 	steerable = area
 	steerable.get_parent().sinking.connect(_is_sinking)
+	steerable.get_parent().immune_to_sinking = false
 	
 	
 	
