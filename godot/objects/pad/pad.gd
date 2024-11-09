@@ -1,13 +1,28 @@
 extends RigidBody2D
 
 
-var last_position:Vector2
+signal sunk
+signal sinking
 
 
-func _ready() -> void:
-	last_position = position
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+var is_sinking = false
+var immune_to_sinking = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	last_position = position
+	if linear_velocity.length() <= 0.001 and not is_sinking:
+		is_sinking = true
+		_sink()
+		
+		
+func _sink() -> void:
+	sinking.emit()
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(sprite_2d, "modulate:a", 0.0, 2.0).finished.connect(_finish_sinking)
+	
+	
+func _finish_sinking() -> void:
+	sunk.emit()
+	queue_free()

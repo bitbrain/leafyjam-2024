@@ -37,6 +37,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 [global_group]
 
 Objects=""
+Camera=""
 
 [gui]
 

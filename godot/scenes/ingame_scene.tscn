@@ -37,7 +37,7 @@ linear_damp = 3.0
 [node name="Player" parent="Objects/Pad" instance=ExtResource("3_4ybs0")]
 collision_layer = 2
 
-[node name="Camera2D" type="Camera2D" parent="Objects/Pad/Player"]
+[node name="Camera2D" type="Camera2D" parent="Objects/Pad/Player" groups=["Camera"]]
 offset = Vector2(0, 35)
 limit_left = 0
 limit_right = 191
