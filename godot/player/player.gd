@@ -120,9 +120,11 @@ func _hop_on_steerable(steerable:Node2D) -> void:
 	camera.position_smoothing_enabled = false
 	reparent(steerable)
 	var position_delta = steerable.global_position - global_position
-	sprite_2d.offset = -position_delta
+	sprite_2d.offset = position_delta
+	sprite_2d.offset.y *= -1.0
+	sprite_2d.offset.x *= -sprite_2d.scale.x
 	var move_sprite_to_position_tween = create_tween()
-	move_sprite_to_position_tween.tween_property(sprite_2d, "offset", Vector2.ZERO, 0.5)\
+	move_sprite_to_position_tween.tween_property(sprite_2d, "offset", Vector2.ZERO, 0.25)\
 	.finished.connect(func():hopping = false)
 	global_position = steerable.global_position
 	camera.reset_smoothing()
