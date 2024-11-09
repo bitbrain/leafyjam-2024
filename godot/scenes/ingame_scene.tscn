@@ -22,7 +22,7 @@ scene = ExtResource("4_gq4tn")
 
 [sub_resource type="Resource" id="Resource_yfgg8"]
 script = ExtResource("7_klj8f")
-probability = 0.8
+probability = 0.2
 scene = ExtResource("7_qlyym")
 
 [node name="IngameScene" type="Node2D"]
@@ -33,7 +33,7 @@ player = NodePath("../Objects/Pad/Player")
 
 [node name="Water" type="Parallax2D" parent="."]
 repeat_size = Vector2(0, 432)
-autoscroll = Vector2(0, 10)
+autoscroll = Vector2(0, 30)
 
 [node name="Sprite2D" type="Sprite2D" parent="Water"]
 position = Vector2(1, 216)

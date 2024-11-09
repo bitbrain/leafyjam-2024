@@ -6,6 +6,7 @@ class_name Player extends CharacterBody2D
 @export var MAX_SPEED = 55
 @export var ROW_STRENGTH = 620.0
 @export var ROW_INTERVAL = 1.0
+@export var STREAM_VELOCITY = Vector2(0, 2550)
 
 
 @onready var steerable_detector: Area2D = $SteerableDetector
@@ -39,12 +40,17 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if input_vector != Vector2.ZERO:
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+	if steerable == null and input_vector == Vector2.ZERO:
+		# Drift with the stream at a constant speed when no input and no steerable object
+		velocity = STREAM_VELOCITY * delta
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+		if input_vector != Vector2.ZERO:
+			velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+		else:
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+		
 	move_and_slide()
-	
+
 	if steerable and input_vector != Vector2.ZERO:
 		if steerable.get_parent().is_sinking:
 			return
@@ -52,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		if _can_row():
 			_row()
 			time_since_last_row = 0
+		
 	
 	
 func _on_steerable_entered(area:Area2D) -> void:
