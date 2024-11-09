@@ -4,7 +4,7 @@ class_name Player extends CharacterBody2D
 @export var ACCELERATION = 150
 @export var FRICTION = 1520
 @export var MAX_SPEED = 55
-@export var ROW_STRENGTH = 1220.0
+@export var ROW_STRENGTH = 620.0
 @export var ROW_INTERVAL = 1.0
 
 
@@ -68,6 +68,21 @@ func _on_steerable_exited(area:Area2D) -> void:
 	
 	
 func _hop_off() -> void:
+	# HACK: avoid error during physics process
+	_hop_off_steerable.call_deferred()
+	
+func _hop_on(area:Area2D) -> void:
+	if steerable:
+		# nothing to hop on to -> already hopped on
+		return
+	var parent = area.get_parent()
+	if parent.is_sinking:
+		return
+	# HACK: avoid error during physics process
+	_hop_on_steerable.call_deferred(parent)
+	
+	
+func _hop_off_steerable() -> void:
 	var objects = get_tree().get_first_node_in_group("Objects")
 	var camera = get_tree().get_first_node_in_group("Camera") as Camera2D
 	# HACK: avoid position smoothing to flicker screen
@@ -77,18 +92,16 @@ func _hop_off() -> void:
 	camera.position_smoothing_enabled = true
 	
 	
-func _hop_on(area:Area2D) -> void:
-	if steerable:
-		# nothing to hop on to -> already hopped on
-		return
-	var parent = area.get_parent()
-	if parent.is_sinking:
-		return
+func _hop_on_steerable(steerable:Node2D) -> void:
 	var camera = get_tree().get_first_node_in_group("Camera") as Camera2D
 	# HACK: avoid position smoothing to flicker screen
 	camera.position_smoothing_enabled = false
-	reparent(parent)
-	global_position = parent.global_position
+	reparent(steerable)
+	var position_delta = steerable.global_position - global_position
+	sprite_2d.offset = -position_delta
+	var move_sprite_to_position_tween = create_tween()
+	move_sprite_to_position_tween.tween_property(sprite_2d, "offset", Vector2.ZERO, 0.5)
+	global_position = steerable.global_position
 	camera.reset_smoothing()
 	camera.position_smoothing_enabled = true
 	

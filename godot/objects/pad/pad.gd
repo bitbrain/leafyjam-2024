@@ -14,8 +14,8 @@ var immune_to_sinking = true
 
 
 func _ready() -> void:
-	steerable_area.area_entered.connect(func(): immune_to_sinking = false)
-	steerable_area.area_exited.connect(func(): immune_to_sinking = true)
+	steerable_area.area_entered.connect(func(area): immune_to_sinking = false)
+	steerable_area.area_exited.connect(func(area): immune_to_sinking = true)
 
 
 func _process(delta: float) -> void:

@@ -43,7 +43,6 @@ flip_v = true
 [node name="Objects" type="Node2D" parent="." groups=["Objects"]]
 
 [node name="Pad" parent="Objects" instance=ExtResource("4_gq4tn")]
-linear_damp = 3.0
 
 [node name="Player" parent="Objects/Pad" instance=ExtResource("3_4ybs0")]
 collision_layer = 2
