@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbvrju86r3jwp"]
+[gd_scene load_steps=8 format=3 uid="uid://bbvrju86r3jwp"]
 
 [ext_resource type="Texture2D" uid="uid://ihb5j22pfjcg" path="res://objects/pad/pad.png" id="1_qgu72"]
 [ext_resource type="Script" path="res://objects/pad/pad.gd" id="1_xgvsb"]
 [ext_resource type="PackedScene" uid="uid://dxa6xrhmewvcr" path="res://spawn/auto_freeable.tscn" id="2_dxt5i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8byo"]
+radius = 36.1248
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wginx"]
 size = Vector2(56, 14.625)
@@ -21,6 +24,13 @@ linear_damp_mode = 1
 linear_damp = 1.5
 angular_damp_mode = 1
 script = ExtResource("1_xgvsb")
+
+[node name="PushAwayCollectibles" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushAwayCollectibles"]
+shape = SubResource("CircleShape2D_y8byo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_qgu72")
@@ -59,3 +69,5 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoardingArea"]
 shape = SubResource("CircleShape2D_bh3c0")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
