@@ -1,19 +1,27 @@
-[gd_scene load_steps=17 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=23 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
 [ext_resource type="PackedScene" uid="uid://dxihjthdhpotg" path="res://input/player_controller.tscn" id="2_wj0lw"]
 [ext_resource type="PackedScene" uid="uid://oxnaucckn13a" path="res://player/player.tscn" id="3_4ybs0"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
-[ext_resource type="Texture2D" uid="uid://cc4rl3l3nqb66" path="res://world/world.png" id="3_p0pxa"]
+[ext_resource type="Texture2D" uid="uid://rx6ipnkcquql" path="res://world/World_Base Green.png" id="3_qhbs6"]
 [ext_resource type="PackedScene" uid="uid://bbvrju86r3jwp" path="res://objects/pad/pad.tscn" id="4_gq4tn"]
+[ext_resource type="SpriteFrames" uid="uid://db1ooq31hgeir" path="res://world/World_Bottom waves.res" id="4_supxm"]
 [ext_resource type="PackedScene" uid="uid://c1xhiv27t7qn2" path="res://walls/walls.tscn" id="5_65yve"]
+[ext_resource type="SpriteFrames" uid="uid://c48f71r4nvjw0" path="res://world/World_.rocks.res" id="5_mtwef"]
+[ext_resource type="SpriteFrames" uid="uid://dkvljjw21wef0" path="res://world/World_Frontwave-s.res" id="6_l18u8"]
 [ext_resource type="PackedScene" uid="uid://ddhqd41lhqtbp" path="res://spawn/object_spawner.tscn" id="6_owfsg"]
+[ext_resource type="SpriteFrames" uid="uid://bryll3oqyeyer" path="res://world/World_Sky reflecStion.res" id="7_2ue3a"]
 [ext_resource type="Script" path="res://spawn/spawnable.gd" id="7_klj8f"]
 [ext_resource type="PackedScene" uid="uid://crxqptxfb2d8n" path="res://objects/rock/rock.tscn" id="7_qlyym"]
+[ext_resource type="SpriteFrames" uid="uid://jiwjw1vw6xox" path="res://world/World_Banks.res" id="8_ufj2a"]
 [ext_resource type="Texture2D" uid="uid://bsol8p8y1gafb" path="res://world/Bottom leaves.png" id="8_y4kph"]
 [ext_resource type="Texture2D" uid="uid://bbyi43cbereq3" path="res://world/Branches.png" id="9_1ycit"]
 [ext_resource type="Texture2D" uid="uid://dsffv31bl7o7x" path="res://world/Top leaves.png" id="10_eoelr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mi6by"]
+blend_mode = 1
 
 [sub_resource type="Resource" id="Resource_xna7s"]
 script = ExtResource("7_klj8f")
@@ -32,15 +40,74 @@ script = ExtResource("1_objyc")
 player = NodePath("../Objects/Pad/Player")
 
 [node name="Water" type="Parallax2D" parent="."]
-repeat_size = Vector2(0, 432)
+repeat_size = Vector2(0, 864)
 autoscroll = Vector2(0, 30)
 
-[node name="Sprite2D" type="Sprite2D" parent="Water"]
-position = Vector2(1, 216)
-texture = ExtResource("3_p0pxa")
-flip_v = true
+[node name="BaseGreen" type="Sprite2D" parent="Water"]
+texture = ExtResource("3_qhbs6")
+
+[node name="BottomWaves" type="AnimatedSprite2D" parent="Water"]
+sprite_frames = ExtResource("4_supxm")
+autoplay = "default"
+frame_progress = 0.724711
+
+[node name="Rocks" type="AnimatedSprite2D" parent="Water"]
+sprite_frames = ExtResource("5_mtwef")
+
+[node name="FrontWaves" type="AnimatedSprite2D" parent="Water"]
+material = SubResource("CanvasItemMaterial_mi6by")
+sprite_frames = ExtResource("6_l18u8")
+autoplay = "default"
+frame_progress = 0.6319
+
+[node name="BaseGreen2" type="Sprite2D" parent="Water"]
+position = Vector2(0, 432)
+texture = ExtResource("3_qhbs6")
+
+[node name="BottomWaves2" type="AnimatedSprite2D" parent="Water"]
+position = Vector2(0, 432)
+sprite_frames = ExtResource("4_supxm")
+autoplay = "default"
+frame_progress = 0.724711
+
+[node name="Rocks2" type="AnimatedSprite2D" parent="Water"]
+position = Vector2(0, 432)
+sprite_frames = ExtResource("5_mtwef")
+
+[node name="FrontWaves2" type="AnimatedSprite2D" parent="Water"]
+material = SubResource("CanvasItemMaterial_mi6by")
+position = Vector2(0, 432)
+sprite_frames = ExtResource("6_l18u8")
+autoplay = "default"
+frame_progress = 0.6319
+
+[node name="WaterSky" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 864)
+
+[node name="SkyReflection" type="AnimatedSprite2D" parent="WaterSky"]
+sprite_frames = ExtResource("7_2ue3a")
+autoplay = "default"
+frame_progress = 0.386089
+
+[node name="SkyReflection2" type="AnimatedSprite2D" parent="WaterSky"]
+position = Vector2(0, 432)
+sprite_frames = ExtResource("7_2ue3a")
+autoplay = "default"
+frame_progress = 0.386089
+
+[node name="WaterBanks" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 864)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WaterBanks"]
+sprite_frames = ExtResource("8_ufj2a")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="WaterBanks"]
+position = Vector2(1, 432)
+sprite_frames = ExtResource("8_ufj2a")
 
 [node name="Objects" type="Node2D" parent="." groups=["Objects"]]
+y_sort_enabled = true
+position = Vector2(0, -1)
 
 [node name="Pad" parent="Objects" instance=ExtResource("4_gq4tn")]
 
@@ -48,35 +115,49 @@ flip_v = true
 collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="Objects/Pad/Player" groups=["Camera"]]
-offset = Vector2(0, 35)
+offset = Vector2(210, 35)
+zoom = Vector2(0.5, 0.5)
 limit_left = 0
-limit_right = 191
+limit_right = 192
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
 [node name="ObjectSpawner" parent="Objects/Pad/Player" instance=ExtResource("6_owfsg")]
+spawn_offset = Vector2(0, 500)
 spawnables = Array[ExtResource("7_klj8f")]([SubResource("Resource_xna7s"), SubResource("Resource_yfgg8")])
 
 [node name="Walls" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_65yve")]
 player = NodePath("../Objects/Pad/Player")
 
 [node name="BottomLeaves" type="Parallax2D" parent="."]
-repeat_size = Vector2(0, 432)
+repeat_size = Vector2(0, 864)
 
 [node name="Sprite2D" type="Sprite2D" parent="BottomLeaves"]
 texture = ExtResource("8_y4kph")
 
+[node name="Sprite2D2" type="Sprite2D" parent="BottomLeaves"]
+position = Vector2(0, 432)
+texture = ExtResource("8_y4kph")
+
 [node name="Branches" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1, 1.1)
-repeat_size = Vector2(0, 432)
+repeat_size = Vector2(0, 864)
 
 [node name="Sprite2D" type="Sprite2D" parent="Branches"]
 texture = ExtResource("9_1ycit")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Branches"]
+position = Vector2(0, 432)
+texture = ExtResource("9_1ycit")
+
 [node name="TopLeaves" type="Parallax2D" parent="."]
-repeat_size = Vector2(0, 432)
+repeat_size = Vector2(0, 864)
 
 [node name="Sprite2D" type="Sprite2D" parent="TopLeaves"]
+texture = ExtResource("10_eoelr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="TopLeaves"]
+position = Vector2(1, 466)
 texture = ExtResource("10_eoelr")
 
 [node name="UI" type="CanvasLayer" parent="."]
