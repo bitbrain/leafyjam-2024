@@ -5,4 +5,4 @@ extends Node2D
 
 
 func _process(delta: float) -> void:
-	position.y = player.position.y
+	global_position.y = player.global_position.y

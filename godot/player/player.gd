@@ -131,6 +131,7 @@ func _hop_on_steerable(steerable:Node2D) -> void:
 	camera.position_smoothing_enabled = true
 	swimming_shape.disabled = true
 	boarded_shape.disabled = false
+	time_since_last_row = ROW_INTERVAL
 	
 	
 func _can_row() -> bool:
