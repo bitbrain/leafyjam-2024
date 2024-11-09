@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 
 @export var ACCELERATION = 150
 @export var FRICTION = 1520
-@export var MAX_SPEED = 55
+@export var MAX_SPEED = 155
 @export var ROW_STRENGTH = 620.0
 @export var ROW_INTERVAL = 1.0
 @export var STREAM_VELOCITY = Vector2(0, 2550)
@@ -12,6 +12,9 @@ class_name Player extends CharacterBody2D
 @onready var steerable_detector: Area2D = $SteerableDetector
 @onready var boarding_detecor: Area2D = $BoardingDetecor
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var boarded_shape: CollisionShape2D = %BoardedShape
+@onready var swimming_shape: CollisionShape2D = %SwimmingShape
+
 
 
 var input_vector = Vector2.ZERO
@@ -20,6 +23,7 @@ var time_since_last_row = ROW_INTERVAL
 
 
 var steerable:Area2D
+var hopping = false
 
 
 func _ready() -> void:
@@ -79,13 +83,17 @@ func _hop_off() -> void:
 	_hop_off_steerable.call_deferred()
 	
 func _hop_on(area:Area2D) -> void:
-	if steerable:
-		# nothing to hop on to -> already hopped on
+	if hopping:
+		# already hopping -> don't hop!
 		return
 	var parent = area.get_parent()
 	if parent.is_sinking:
 		return
+	if steerable == area:
+		# nothing to hop on to -> already hopped on
+		return
 	# HACK: avoid error during physics process
+	hopping = true
 	_hop_on_steerable.call_deferred(parent)
 	
 	
@@ -97,6 +105,8 @@ func _hop_off_steerable() -> void:
 	reparent(objects)
 	camera.reset_smoothing()
 	camera.position_smoothing_enabled = true
+	swimming_shape.disabled = false
+	boarded_shape.disabled = true
 	
 	
 func _hop_on_steerable(steerable:Node2D) -> void:
@@ -107,10 +117,13 @@ func _hop_on_steerable(steerable:Node2D) -> void:
 	var position_delta = steerable.global_position - global_position
 	sprite_2d.offset = -position_delta
 	var move_sprite_to_position_tween = create_tween()
-	move_sprite_to_position_tween.tween_property(sprite_2d, "offset", Vector2.ZERO, 0.5)
+	move_sprite_to_position_tween.tween_property(sprite_2d, "offset", Vector2.ZERO, 0.5)\
+	.finished.connect(func():hopping = false)
 	global_position = steerable.global_position
 	camera.reset_smoothing()
 	camera.position_smoothing_enabled = true
+	swimming_shape.disabled = true
+	boarded_shape.disabled = false
 	
 	
 func _can_row() -> bool:
