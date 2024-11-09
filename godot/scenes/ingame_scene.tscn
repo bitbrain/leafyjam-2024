@@ -17,7 +17,10 @@ script = ExtResource("1_objyc")
 [node name="PlayerController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_wj0lw")]
 player = NodePath("../Objects/Pad/Player")
 
-[node name="ObjectSpawner" parent="." instance=ExtResource("6_owfsg")]
+[node name="PadSpawner" parent="." instance=ExtResource("6_owfsg")]
+min_interval = 3.0
+max_interval = 6.0
+scene = ExtResource("4_gq4tn")
 
 [node name="Water" type="Parallax2D" parent="."]
 repeat_size = Vector2(0, 432)
@@ -44,7 +47,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Objects/Pad/Player"]
-remote_path = NodePath("../../../../ObjectSpawner")
+remote_path = NodePath("../../../../PadSpawner")
 update_rotation = false
 update_scale = false
 
