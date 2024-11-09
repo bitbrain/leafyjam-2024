@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbvrju86r3jwp"]
+[gd_scene load_steps=7 format=3 uid="uid://bbvrju86r3jwp"]
 
 [ext_resource type="Texture2D" uid="uid://ihb5j22pfjcg" path="res://objects/pad/pad.png" id="1_qgu72"]
 [ext_resource type="Script" path="res://objects/pad/pad.gd" id="1_xgvsb"]
@@ -9,6 +9,9 @@ size = Vector2(56, 14.625)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvhps"]
 radius = 29.0172
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bh3c0"]
+radius = 40.0125
 
 [node name="Pad" type="RigidBody2D"]
 mass = 0.1
@@ -49,3 +52,10 @@ shape = SubResource("CircleShape2D_mvhps")
 
 [node name="AutoFreeable" parent="." instance=ExtResource("2_dxt5i")]
 metadata/_edit_lock_ = true
+
+[node name="BoardingArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardingArea"]
+shape = SubResource("CircleShape2D_bh3c0")

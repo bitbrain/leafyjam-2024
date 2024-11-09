@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://oxnaucckn13a"]
+[gd_scene load_steps=6 format=3 uid="uid://oxnaucckn13a"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_v8ddu"]
 [ext_resource type="Texture2D" uid="uid://clkfpdw2qmcj0" path="res://player/frog.png" id="2_bry4v"]
@@ -7,6 +7,8 @@
 radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_esspp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2fqp8"]
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -27,3 +29,11 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SteerableDetector"]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_esspp")
+
+[node name="BoardingDetecor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardingDetecor"]
+position = Vector2(-2, 6)
+shape = SubResource("CircleShape2D_2fqp8")

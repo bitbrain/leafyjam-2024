@@ -20,9 +20,9 @@ script = ExtResource("7_klj8f")
 probability = 1.0
 scene = ExtResource("4_gq4tn")
 
-[sub_resource type="Resource" id="Resource_8wp6e"]
+[sub_resource type="Resource" id="Resource_yfgg8"]
 script = ExtResource("7_klj8f")
-probability = 0.5
+probability = 0.8
 scene = ExtResource("7_qlyym")
 
 [node name="IngameScene" type="Node2D"]
@@ -56,7 +56,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
 [node name="ObjectSpawner" parent="Objects/Pad/Player" instance=ExtResource("6_owfsg")]
-spawnables = Array[ExtResource("7_klj8f")]([SubResource("Resource_xna7s"), SubResource("Resource_8wp6e")])
+spawnables = Array[ExtResource("7_klj8f")]([SubResource("Resource_xna7s"), SubResource("Resource_yfgg8")])
 
 [node name="Walls" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_65yve")]
 player = NodePath("../Objects/Pad/Player")

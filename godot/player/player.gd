@@ -8,6 +8,7 @@ class_name Player extends CharacterBody2D
 
 
 @onready var steerable_detector: Area2D = $SteerableDetector
+@onready var boarding_detecor: Area2D = $BoardingDetecor
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 
@@ -20,6 +21,7 @@ var steerable:Area2D
 func _ready() -> void:
 	steerable_detector.area_entered.connect(_on_steerable_entered)
 	steerable_detector.area_exited.connect(_on_steerable_exited)
+	boarding_detecor.area_entered.connect(_hop_on)
 	
 
 func move(input_vector:Vector2) -> void:
@@ -45,22 +47,38 @@ func _physics_process(delta: float) -> void:
 	
 func _on_steerable_entered(area:Area2D) -> void:
 	steerable = area
-	steerable.get_parent().sinking.connect(_is_sinking)
+	steerable.get_parent().sinking.connect(_hop_off)
 	steerable.get_parent().immune_to_sinking = false
 	
 	
 	
 func _on_steerable_exited(area:Area2D) -> void:
 	if steerable:
-		steerable.get_parent().sinking.disconnect(_is_sinking)
+		steerable.get_parent().sinking.disconnect(_hop_off)
 	steerable = null
 	
 	
-func _is_sinking() -> void:
+func _hop_off() -> void:
 	var objects = get_tree().get_first_node_in_group("Objects")
 	var camera = get_tree().get_first_node_in_group("Camera") as Camera2D
 	# HACK: avoid position smoothing to flicker screen
 	camera.position_smoothing_enabled = false
 	reparent(objects)
+	camera.reset_smoothing()
+	camera.position_smoothing_enabled = true
+	
+	
+func _hop_on(area:Area2D) -> void:
+	if steerable:
+		# nothing to hop on to -> already hopped on
+		return
+	var parent = area.get_parent()
+	if parent.is_sinking:
+		return
+	var camera = get_tree().get_first_node_in_group("Camera") as Camera2D
+	# HACK: avoid position smoothing to flicker screen
+	camera.position_smoothing_enabled = false
+	reparent(parent)
+	global_position = parent.global_position
 	camera.reset_smoothing()
 	camera.position_smoothing_enabled = true
