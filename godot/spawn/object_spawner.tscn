@@ -4,5 +4,8 @@
 
 [node name="ObjectSpawner" type="Node2D"]
 script = ExtResource("1_p45am")
+interval = 4.0
+spawn_offset = Vector2(0, 250)
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true

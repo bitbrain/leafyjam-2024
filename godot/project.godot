@@ -34,6 +34,10 @@ window/stretch/scale_mode="integer"
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[global_group]
+
+Objects=""
+
 [gui]
 
 theme/custom="res://ui/theme.tres"
