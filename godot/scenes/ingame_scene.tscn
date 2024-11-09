@@ -36,7 +36,7 @@ repeat_size = Vector2(0, 432)
 autoscroll = Vector2(0, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="Water"]
-position = Vector2(0, 216)
+position = Vector2(1, 216)
 texture = ExtResource("3_p0pxa")
 flip_v = true
 

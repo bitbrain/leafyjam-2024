@@ -4,7 +4,8 @@ class_name Player extends CharacterBody2D
 @export var ACCELERATION = 150
 @export var FRICTION = 1520
 @export var MAX_SPEED = 55
-@export var ROW_STRENGTH = 20.0
+@export var ROW_STRENGTH = 1220.0
+@export var ROW_INTERVAL = 1.0
 
 
 @onready var steerable_detector: Area2D = $SteerableDetector
@@ -13,6 +14,8 @@ class_name Player extends CharacterBody2D
 
 
 var input_vector = Vector2.ZERO
+var row_vector = Vector2.ZERO
+var time_since_last_row = ROW_INTERVAL
 
 
 var steerable:Area2D
@@ -29,6 +32,10 @@ func move(input_vector:Vector2) -> void:
 	
 	if self.input_vector.x != 0:
 		sprite_2d.scale.x = 1 if input_vector.x < 0 else -1
+		
+		
+func _process(delta: float) -> void:
+	time_since_last_row += delta
 
 
 func _physics_process(delta: float) -> void:
@@ -41,8 +48,10 @@ func _physics_process(delta: float) -> void:
 	if steerable and input_vector != Vector2.ZERO:
 		if steerable.get_parent().is_sinking:
 			return
-		var force = Vector2(input_vector.x * ROW_STRENGTH, 0)  # Adjust the multiplier as needed
-		steerable.get_parent().apply_central_force(force)
+		row_vector = input_vector
+		if _can_row():
+			_row()
+			time_since_last_row = 0
 	
 	
 func _on_steerable_entered(area:Area2D) -> void:
@@ -82,3 +91,13 @@ func _hop_on(area:Area2D) -> void:
 	global_position = parent.global_position
 	camera.reset_smoothing()
 	camera.position_smoothing_enabled = true
+	
+	
+func _can_row() -> bool:
+	return time_since_last_row >= ROW_INTERVAL
+
+
+func _row() -> void:
+	if steerable:
+		var force = Vector2(row_vector.x * ROW_STRENGTH, max(0.0, row_vector.y * ROW_STRENGTH))
+		steerable.get_parent().apply_central_force(force)

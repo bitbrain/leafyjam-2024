@@ -25,9 +25,9 @@ func _ready() -> void:
 	
 
 func _on_timeout() -> void:
-	timer.wait_time = min_interval + randomizer.randf_range(0.0, max_interval - min_interval)
 	if current_spawn_count == spawn_limit:
 		return
+	timer.wait_time = min_interval + randomizer.randf_range(0.0, max_interval - min_interval)
 	var spawnable_scene = _get_spawnable_scene()
 	var instance = spawnable_scene.instantiate()
 	objects.add_child(instance)
