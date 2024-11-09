@@ -14,11 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://ddhqd41lhqtbp" path="res://spawn/object_spawner.tscn" id="6_owfsg"]
 [ext_resource type="SpriteFrames" uid="uid://bryll3oqyeyer" path="res://world/World_Sky reflecStion.res" id="7_2ue3a"]
 [ext_resource type="Script" path="res://spawn/spawnable.gd" id="7_klj8f"]
-[ext_resource type="PackedScene" uid="uid://crxqptxfb2d8n" path="res://objects/rock/rock.tscn" id="7_qlyym"]
 [ext_resource type="SpriteFrames" uid="uid://jiwjw1vw6xox" path="res://world/World_Banks.res" id="8_ufj2a"]
 [ext_resource type="Texture2D" uid="uid://bsol8p8y1gafb" path="res://world/Bottom leaves.png" id="8_y4kph"]
 [ext_resource type="Texture2D" uid="uid://bbyi43cbereq3" path="res://world/Branches.png" id="9_1ycit"]
 [ext_resource type="Texture2D" uid="uid://dsffv31bl7o7x" path="res://world/Top leaves.png" id="10_eoelr"]
+[ext_resource type="PackedScene" uid="uid://bkeebnwtn4s71" path="res://spawn/presets/preset_blockade.tscn" id="14_kyfsp"]
 [ext_resource type="PackedScene" uid="uid://ft4ilvc8bhvu" path="res://objects/acorn/acorn.tscn" id="14_xgwab"]
 [ext_resource type="FontFile" uid="uid://dbjkc16bvcrmu" path="res://fonts/alkhemikal/alkhemikal-16.fnt" id="19_8h351"]
 [ext_resource type="PackedScene" uid="uid://bx558emvn52ij" path="res://ui/acorn_count.tscn" id="20_56ce1"]
@@ -30,16 +30,19 @@ blend_mode = 1
 script = ExtResource("7_klj8f")
 probability = 1.0
 scene = ExtResource("4_gq4tn")
-
-[sub_resource type="Resource" id="Resource_yfgg8"]
-script = ExtResource("7_klj8f")
-probability = 0.2
-scene = ExtResource("7_qlyym")
+preset = false
 
 [sub_resource type="Resource" id="Resource_461do"]
 script = ExtResource("7_klj8f")
 probability = 1.0
 scene = ExtResource("14_xgwab")
+preset = false
+
+[sub_resource type="Resource" id="Resource_ldima"]
+script = ExtResource("7_klj8f")
+probability = 0.5
+scene = ExtResource("14_kyfsp")
+preset = true
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -140,7 +143,7 @@ min_interval = 1.0
 max_interval = 3.0
 spawn_offset = Vector2(0, 500)
 spawn_limit = 5
-spawnables = Array[ExtResource("7_klj8f")]([SubResource("Resource_xna7s"), SubResource("Resource_yfgg8"), SubResource("Resource_461do")])
+spawnables = Array[ExtResource("7_klj8f")]([SubResource("Resource_xna7s"), SubResource("Resource_461do"), SubResource("Resource_ldima")])
 
 [node name="Walls" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_65yve")]
 player = NodePath("../Objects/Pad/Player")

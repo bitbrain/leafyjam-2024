@@ -33,6 +33,7 @@ var health = 100.0:
 
 
 func _ready() -> void:
+	scale.x *= 1.0 if randf() < 0.5 else -1
 	steerable_area.area_entered.connect(
 		func(area):
 			immune_to_sinking = false
@@ -43,13 +44,6 @@ func _ready() -> void:
 		if touched and not is_sinking:
 			health -= sinking_damage
 		)
-
-
-func _process(delta: float) -> void:
-	if immune_to_sinking:
-		return
-	if linear_velocity.length() <= 0.001 and not is_sinking:
-		_sink()
 		
 		
 func _sink() -> void:

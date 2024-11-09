@@ -28,17 +28,25 @@ func _on_timeout() -> void:
 	if current_spawn_count == spawn_limit:
 		return
 	timer.wait_time = min_interval + randomizer.randf_range(0.0, max_interval - min_interval)
-	var spawnable_scene = _get_spawnable_scene()
-	var instance = spawnable_scene.instantiate()
-	objects.add_child(instance)
-	
+	var spawnable = _get_spawnable_scene()
+	var instance = spawnable.scene.instantiate() as Node2D
 	instance.position.x = randomizer.randf_range(-spawn_width / 2.0, spawn_width / 2.0)
 	instance.global_position = global_position + spawn_offset
-	current_spawn_count += 1
-	instance.tree_exiting.connect(func(): current_spawn_count -= 1)
+	
+	if spawnable.preset:
+		var children = instance.get_children()
+		for child in children:
+			child.reparent(objects)
+			current_spawn_count += 1
+			child.tree_exiting.connect(func(): current_spawn_count -= 1)
+		instance.queue_free()
+	else:
+		objects.add_child(instance)
+		current_spawn_count += 1
+		instance.tree_exiting.connect(func(): current_spawn_count -= 1)
 	
 
-func _get_spawnable_scene() -> PackedScene:
+func _get_spawnable_scene() -> Spawnable:
 	var total_weight = 0.0
 	for spawnable in spawnables:
 		total_weight += spawnable.probability
@@ -49,6 +57,6 @@ func _get_spawnable_scene() -> PackedScene:
 	for spawnable in spawnables:
 		cumulative_weight += spawnable.probability
 		if random_value <= cumulative_weight:
-			return spawnable.scene  # Return the selected scene
+			return spawnable
 	
-	return spawnables[0].scene
+	return spawnables[0]

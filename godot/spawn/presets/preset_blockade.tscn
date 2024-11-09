@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkeebnwtn4s71"]
+
+[ext_resource type="PackedScene" uid="uid://crxqptxfb2d8n" path="res://objects/rock/rock.tscn" id="1_35b0h"]
+[ext_resource type="PackedScene" uid="uid://bbvrju86r3jwp" path="res://objects/pad/pad.tscn" id="2_7il4l"]
+
+[node name="PresetBlockade" type="Node2D"]
+
+[node name="Rock" parent="." instance=ExtResource("1_35b0h")]
+position = Vector2(-71, -18)
+
+[node name="Rock2" parent="." instance=ExtResource("1_35b0h")]
+position = Vector2(-26, 24)
+
+[node name="Rock3" parent="." instance=ExtResource("1_35b0h")]
+position = Vector2(74, -20)
+
+[node name="Pad" parent="." instance=ExtResource("2_7il4l")]
+position = Vector2(12, -32)
+
+[node name="Pad2" parent="." instance=ExtResource("2_7il4l")]
+position = Vector2(36, 51)
