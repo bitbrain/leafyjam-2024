@@ -2,13 +2,18 @@ extends Control
 
 var count = 0:
 	set(c):
-		count = c
-		if label:
-			label.text = str(count)
+		if c >= 0:
+			count = c
+			if label:
+				label.text = str(count)
 
 
 @onready var label: Label = $Label
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+
+func drop_acorn() -> void:
+	self.count -= 1
 
 
 func collect_acorn(acorn:Node2D) -> void:

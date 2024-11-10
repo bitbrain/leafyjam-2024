@@ -1,7 +1,11 @@
 class_name Player extends CharacterBody2D
 
 
+const AcornScene = preload("res://objects/acorn/acorn.tscn")
+
+
 signal acorn_collected(acorn:Node2D)
+signal acorn_dropped()
 
 
 @export var ACCELERATION = 150
@@ -15,6 +19,7 @@ signal acorn_collected(acorn:Node2D)
 	set(dt):
 		DAMAGE_TICKRATE = dt
 		damage_timer.wait_time = DAMAGE_TICKRATE
+@export var DROP_RADIUS = 80
 
 
 @onready var steerable_detector: Area2D = $SteerableDetector
@@ -26,6 +31,7 @@ signal acorn_collected(acorn:Node2D)
 @onready var acorn_detector: Area2D = $AcornDetector
 @onready var damage_detector: Area2D = $DamageDetector
 @onready var damage_timer: Timer = $DamageTimer
+@onready var gameobjects = get_tree().get_first_node_in_group("Objects")
 
 
 enum AnimationState { ROW, ROW_WAIT, STAND, JUMP, JUMP_LAUNCH, JUMP_LAND, SWIM }
@@ -41,6 +47,7 @@ var hopping = false
 var current_state = AnimationState.STAND
 
 var current_tick_damage = 0
+var acorn_count = 0
 
 
 func _ready() -> void:
@@ -53,6 +60,21 @@ func _ready() -> void:
 	sprite_2d.animation_looped.connect(_on_animation_looped)
 	damage_detector.area_entered.connect(_damage_enter)
 	damage_detector.area_exited.connect(_damage_exit)
+	
+	
+func drop_acorn() -> void:
+	if acorn_count > 0:
+		var acorn = AcornScene.instantiate()
+		acorn.global_position = global_position + Vector2(randf_range(-DROP_RADIUS, DROP_RADIUS), randf_range(-DROP_RADIUS, DROP_RADIUS))
+		
+		# Calculate a random direction and strength for the impulse
+		var impulse_direction = (acorn.global_position - global_position).normalized()
+		var impulse_strength = randf_range(10, 20)
+		acorn.apply_impulse(impulse_direction * impulse_strength)
+		
+		gameobjects.add_child(acorn)
+		acorn_count -= 1
+		acorn_dropped.emit()
 	
 
 func move(input_vector:Vector2) -> void:
@@ -134,6 +156,8 @@ func _hop_off_steerable() -> void:
 	for shape in boarded_shapes:
 		shape.disabled = true
 	play_animation(AnimationState.SWIM)
+	for i in range(0, acorn_count):
+		drop_acorn()
 	
 	
 func _hop_on_steerable(steerable:Node2D) -> void:
@@ -171,6 +195,7 @@ func _row() -> void:
 		
 func _collect_acorn(acorn:Node2D) -> void:
 	if steerable:
+		acorn_count += 1
 		acorn_collected.emit(acorn)
 		acorn.queue_free()
 	
