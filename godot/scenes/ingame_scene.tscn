@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=35 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -11,6 +11,7 @@
 [ext_resource type="SpriteFrames" uid="uid://db1ooq31hgeir" path="res://world/World_Bottom waves.res" id="4_supxm"]
 [ext_resource type="PackedScene" uid="uid://c1xhiv27t7qn2" path="res://walls/walls.tscn" id="5_65yve"]
 [ext_resource type="SpriteFrames" uid="uid://c48f71r4nvjw0" path="res://world/World_.rocks.res" id="5_mtwef"]
+[ext_resource type="SpriteFrames" uid="uid://n01dva73m1u6" path="res://world/World_Layer 16.res" id="5_o58x7"]
 [ext_resource type="SpriteFrames" uid="uid://dkvljjw21wef0" path="res://world/World_Frontwave-s.res" id="6_l18u8"]
 [ext_resource type="PackedScene" uid="uid://ddhqd41lhqtbp" path="res://spawn/object_spawner.tscn" id="6_owfsg"]
 [ext_resource type="SpriteFrames" uid="uid://bryll3oqyeyer" path="res://world/World_Sky reflecStion.res" id="7_2ue3a"]
@@ -75,44 +76,55 @@ position_smoothing_speed = 8.0
 [node name="PlayerController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_wj0lw")]
 player = NodePath("../Objects/Pad/Player")
 
-[node name="Water" type="Parallax2D" parent="."]
+[node name="WaterBase" type="Parallax2D" parent="."]
 repeat_size = Vector2(0, 864)
-autoscroll = Vector2(0, 30)
 
-[node name="BaseGreen" type="Sprite2D" parent="Water"]
+[node name="BaseGreen" type="Sprite2D" parent="WaterBase"]
 texture = ExtResource("3_qhbs6")
 
-[node name="BottomWaves" type="AnimatedSprite2D" parent="Water"]
+[node name="BottomWaves" type="AnimatedSprite2D" parent="WaterBase"]
 sprite_frames = ExtResource("4_supxm")
 autoplay = "default"
 frame_progress = 0.724711
 
-[node name="Rocks" type="AnimatedSprite2D" parent="Water"]
+[node name="BaseRocks" type="AnimatedSprite2D" parent="WaterBase"]
+sprite_frames = ExtResource("5_o58x7")
+
+[node name="Rocks" type="AnimatedSprite2D" parent="WaterBase"]
 visible = false
 sprite_frames = ExtResource("5_mtwef")
 
-[node name="FrontWaves" type="AnimatedSprite2D" parent="Water"]
+[node name="BaseGreen2" type="Sprite2D" parent="WaterBase"]
+position = Vector2(0, 432)
+texture = ExtResource("3_qhbs6")
+
+[node name="BottomWaves2" type="AnimatedSprite2D" parent="WaterBase"]
+position = Vector2(0, 432)
+sprite_frames = ExtResource("4_supxm")
+autoplay = "default"
+frame_progress = 0.724711
+
+[node name="BaseRocks2" type="AnimatedSprite2D" parent="WaterBase"]
+position = Vector2(0, 429)
+sprite_frames = ExtResource("5_o58x7")
+
+[node name="Rocks2" type="AnimatedSprite2D" parent="WaterBase"]
+visible = false
+position = Vector2(0, 432)
+sprite_frames = ExtResource("5_mtwef")
+
+[node name="WaterMoving" type="Parallax2D" parent="."]
+scroll_offset = Vector2(0, -1)
+repeat_size = Vector2(0, 864)
+autoscroll = Vector2(0, 30)
+
+[node name="FrontWaves" type="AnimatedSprite2D" parent="WaterMoving"]
 material = SubResource("CanvasItemMaterial_mi6by")
 sprite_frames = ExtResource("6_l18u8")
 autoplay = "default"
 frame_progress = 0.6319
 
-[node name="BaseGreen2" type="Sprite2D" parent="Water"]
-position = Vector2(0, 432)
-texture = ExtResource("3_qhbs6")
-
-[node name="BottomWaves2" type="AnimatedSprite2D" parent="Water"]
-position = Vector2(0, 432)
-sprite_frames = ExtResource("4_supxm")
-autoplay = "default"
-frame_progress = 0.724711
-
-[node name="Rocks2" type="AnimatedSprite2D" parent="Water"]
-visible = false
-position = Vector2(0, 432)
-sprite_frames = ExtResource("5_mtwef")
-
-[node name="FrontWaves2" type="AnimatedSprite2D" parent="Water"]
+[node name="FrontWaves2" type="AnimatedSprite2D" parent="WaterMoving"]
 material = SubResource("CanvasItemMaterial_mi6by")
 position = Vector2(0, 432)
 sprite_frames = ExtResource("6_l18u8")
