@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2dmue5b8xdu6"]
+[gd_scene load_steps=6 format=3 uid="uid://c2dmue5b8xdu6"]
 
 [ext_resource type="Script" path="res://scenes/game_over_scene.gd" id="1_qesbc"]
 [ext_resource type="AudioStream" uid="uid://dmugx8x0s08q7" path="res://audio/the_autumn_of_his_life.ogg" id="1_uxdl4"]
 [ext_resource type="Script" path="res://ui/overlays/fade_overlay.gd" id="2_h24yt"]
 [ext_resource type="FontFile" uid="uid://bh7mc8kkwafso" path="res://fonts/alkhemikal/alkhemikal-21.fnt" id="3_k15fo"]
+[ext_resource type="Texture2D" uid="uid://dsffv31bl7o7x" path="res://world/Top leaves.png" id="5_soi8d"]
 
 [node name="GameOverScene" type="Node2D"]
 script = ExtResource("1_qesbc")
@@ -23,6 +24,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.968584, 0.798995, 0.615214, 1)
 theme_override_fonts/font = ExtResource("3_k15fo")
 text = "'A society grows great
 when old men plant trees
@@ -30,6 +32,12 @@ in whose shade they shall never sit.'
 
 - Greek Proverb -"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_top = -12.0
+offset_right = 384.0
+offset_bottom = 420.0
+texture = ExtResource("5_soi8d")
 
 [node name="FadeOverlay" type="ColorRect" parent="CanvasLayer"]
 visible = false
