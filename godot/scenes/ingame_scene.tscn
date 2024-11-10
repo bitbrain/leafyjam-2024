@@ -62,9 +62,11 @@ repeat_size = Vector2(0, 864)
 autoscroll = Vector2(0, 30)
 
 [node name="BaseGreen" type="Sprite2D" parent="Water"]
+position = Vector2(-194, 29)
 texture = ExtResource("3_qhbs6")
 
 [node name="BottomWaves" type="AnimatedSprite2D" parent="Water"]
+position = Vector2(-194, 29)
 sprite_frames = ExtResource("4_supxm")
 autoplay = "default"
 frame_progress = 0.724711
@@ -75,16 +77,17 @@ sprite_frames = ExtResource("5_mtwef")
 
 [node name="FrontWaves" type="AnimatedSprite2D" parent="Water"]
 material = SubResource("CanvasItemMaterial_mi6by")
+position = Vector2(-194, 29)
 sprite_frames = ExtResource("6_l18u8")
 autoplay = "default"
 frame_progress = 0.6319
 
 [node name="BaseGreen2" type="Sprite2D" parent="Water"]
-position = Vector2(0, 432)
+position = Vector2(-194, 461)
 texture = ExtResource("3_qhbs6")
 
 [node name="BottomWaves2" type="AnimatedSprite2D" parent="Water"]
-position = Vector2(0, 432)
+position = Vector2(-194, 461)
 sprite_frames = ExtResource("4_supxm")
 autoplay = "default"
 frame_progress = 0.724711
@@ -96,12 +99,70 @@ sprite_frames = ExtResource("5_mtwef")
 
 [node name="FrontWaves2" type="AnimatedSprite2D" parent="Water"]
 material = SubResource("CanvasItemMaterial_mi6by")
-position = Vector2(0, 432)
+position = Vector2(-194, 461)
 sprite_frames = ExtResource("6_l18u8")
 autoplay = "default"
 frame_progress = 0.6319
 
+[node name="BaseGreen3" type="Sprite2D" parent="Water"]
+position = Vector2(190, 883)
+scale = Vector2(-1, -1)
+texture = ExtResource("3_qhbs6")
+flip_h = true
+
+[node name="BottomWaves3" type="AnimatedSprite2D" parent="Water"]
+position = Vector2(190, 883)
+scale = Vector2(-1, -1)
+sprite_frames = ExtResource("4_supxm")
+autoplay = "default"
+frame_progress = 0.724711
+flip_h = true
+
+[node name="Rocks3" type="AnimatedSprite2D" parent="Water"]
+visible = false
+scale = Vector2(-1, -1)
+sprite_frames = ExtResource("5_mtwef")
+
+[node name="FrontWaves3" type="AnimatedSprite2D" parent="Water"]
+material = SubResource("CanvasItemMaterial_mi6by")
+position = Vector2(190, 883)
+scale = Vector2(-1, -1)
+sprite_frames = ExtResource("6_l18u8")
+autoplay = "default"
+frame_progress = 0.6319
+flip_h = true
+
+[node name="BaseGreen4" type="Sprite2D" parent="Water"]
+position = Vector2(190, 1315)
+scale = Vector2(-1, -1)
+texture = ExtResource("3_qhbs6")
+flip_h = true
+
+[node name="BottomWaves4" type="AnimatedSprite2D" parent="Water"]
+position = Vector2(190, 1315)
+scale = Vector2(-1, -1)
+sprite_frames = ExtResource("4_supxm")
+autoplay = "default"
+frame_progress = 0.724711
+flip_h = true
+
+[node name="Rocks4" type="AnimatedSprite2D" parent="Water"]
+visible = false
+position = Vector2(0, 432)
+scale = Vector2(-1, -1)
+sprite_frames = ExtResource("5_mtwef")
+
+[node name="FrontWaves4" type="AnimatedSprite2D" parent="Water"]
+material = SubResource("CanvasItemMaterial_mi6by")
+position = Vector2(190, 1315)
+scale = Vector2(-1, -1)
+sprite_frames = ExtResource("6_l18u8")
+autoplay = "default"
+frame_progress = 0.6319
+flip_h = true
+
 [node name="WaterSky" type="Parallax2D" parent="."]
+visible = false
 repeat_size = Vector2(0, 864)
 
 [node name="SkyReflection" type="AnimatedSprite2D" parent="WaterSky"]
@@ -116,6 +177,7 @@ autoplay = "default"
 frame_progress = 0.386089
 
 [node name="WaterBanks" type="Parallax2D" parent="."]
+visible = false
 repeat_size = Vector2(0, 864)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WaterBanks"]
@@ -139,16 +201,18 @@ ACCELERATION = 500
 MAX_SPEED = 200
 
 [node name="ObjectSpawner" parent="Objects/Pad/Player" instance=ExtResource("6_owfsg")]
-min_interval = 1.0
-max_interval = 3.0
+min_interval = 0.5
+max_interval = 2.0
 spawn_offset = Vector2(0, 500)
-spawn_limit = 5
+spawn_width = 200.0
+spawn_limit = 10
 spawnables = Array[ExtResource("7_klj8f")]([SubResource("Resource_xna7s"), SubResource("Resource_461do")])
 
 [node name="Walls" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_65yve")]
 player = NodePath("../Objects/Pad/Player")
 
 [node name="BottomLeaves" type="Parallax2D" parent="."]
+visible = false
 repeat_size = Vector2(0, 864)
 
 [node name="Sprite2D" type="Sprite2D" parent="BottomLeaves"]
@@ -159,6 +223,7 @@ position = Vector2(0, 432)
 texture = ExtResource("8_y4kph")
 
 [node name="Branches" type="Parallax2D" parent="."]
+visible = false
 scroll_scale = Vector2(1, 1.1)
 repeat_size = Vector2(0, 864)
 
@@ -170,6 +235,7 @@ position = Vector2(0, 432)
 texture = ExtResource("9_1ycit")
 
 [node name="TopLeaves" type="Parallax2D" parent="."]
+visible = false
 repeat_size = Vector2(0, 864)
 
 [node name="Sprite2D" type="Sprite2D" parent="TopLeaves"]
