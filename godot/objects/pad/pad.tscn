@@ -38,8 +38,8 @@ animation = &"Clip"
 autoplay = "Neutral"
 
 [node name="PushAwayCollectibles" type="StaticBody2D" parent="."]
-collision_layer = 16
-collision_mask = 16
+collision_layer = 64
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PushAwayCollectibles"]
 shape = SubResource("CircleShape2D_y8byo")

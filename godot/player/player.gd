@@ -10,14 +10,22 @@ signal acorn_collected(acorn:Node2D)
 @export var ROW_STRENGTH = 620.0
 @export var ROW_INTERVAL = 1.0
 @export var STREAM_VELOCITY = Vector2(0, 2550)
+@export var DAMAGE = 6
+@export var DAMAGE_TICKRATE = 0.2:
+	set(dt):
+		DAMAGE_TICKRATE = dt
+		damage_timer.wait_time = DAMAGE_TICKRATE
 
 
 @onready var steerable_detector: Area2D = $SteerableDetector
 @onready var boarding_detecor: Area2D = $BoardingDetecor
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var boarded_shape: CollisionShape2D = %BoardedShape
-@onready var swimming_shape: CollisionShape2D = %SwimmingShape
+@onready var boarded_shapes: Array[CollisionShape2D] = [%BoardedShape, %BoardedDamageShape]
+@onready var swimming_shapes: Array[CollisionShape2D] = [%SwimmingShape, %SwimmingDamageShape]
+
 @onready var acorn_detector: Area2D = $AcornDetector
+@onready var damage_detector: Area2D = $DamageDetector
+@onready var damage_timer: Timer = $DamageTimer
 
 
 enum AnimationState { ROW, ROW_WAIT, STAND, JUMP, JUMP_LAUNCH, JUMP_LAND, SWIM }
@@ -32,13 +40,19 @@ var steerable:Area2D
 var hopping = false
 var current_state = AnimationState.STAND
 
+var current_tick_damage = 0
+
 
 func _ready() -> void:
+	damage_timer.wait_time = DAMAGE_TICKRATE
+	damage_timer.timeout.connect(_on_damage)
 	steerable_detector.area_entered.connect(_on_steerable_entered)
 	steerable_detector.area_exited.connect(_on_steerable_exited)
 	boarding_detecor.area_entered.connect(_hop_on)
 	acorn_detector.body_entered.connect(_collect_acorn)
 	sprite_2d.animation_looped.connect(_on_animation_looped)
+	damage_detector.area_entered.connect(_damage_enter)
+	damage_detector.area_exited.connect(_damage_exit)
 	
 
 func move(input_vector:Vector2) -> void:
@@ -115,8 +129,10 @@ func _hop_off_steerable() -> void:
 	var objects = get_tree().get_first_node_in_group("Objects")
 	var camera = get_tree().get_first_node_in_group("Camera") as Camera2D
 	reparent(objects)
-	swimming_shape.disabled = false
-	boarded_shape.disabled = true
+	for shape in swimming_shapes:
+		shape.disabled = false
+	for shape in boarded_shapes:
+		shape.disabled = true
 	play_animation(AnimationState.SWIM)
 	
 	
@@ -133,8 +149,10 @@ func _hop_on_steerable(steerable:Node2D) -> void:
 	.set_delay(0.4)\
 	.finished.connect(func():hopping = false)
 	global_position = steerable.get_landing_position()
-	swimming_shape.disabled = true
-	boarded_shape.disabled = false
+	for shape in swimming_shapes:
+		shape.disabled = true
+	for shape in boarded_shapes:
+		shape.disabled = false
 	time_since_last_row = ROW_INTERVAL
 	play_animation(AnimationState.JUMP)
 	
@@ -155,6 +173,20 @@ func _collect_acorn(acorn:Node2D) -> void:
 	acorn_collected.emit(acorn)
 	acorn.queue_free()
 	
+	
+func _damage_enter(damageable:Area2D) -> void:
+	current_tick_damage += DAMAGE
+
+func _damage_exit(damageable:Area2D) -> void:
+	current_tick_damage -= DAMAGE
+	
+	
+func _on_damage() -> void:
+	if current_tick_damage > 0:
+		if steerable:
+			var pad = steerable.get_parent()
+			pad.health -= current_tick_damage
+
 	
 func play_animation(state: AnimationState):
 	current_state = state

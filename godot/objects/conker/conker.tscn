@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsh38c4c3amhw"]
+
+[ext_resource type="SpriteFrames" uid="uid://dgf3rmo3qudmo" path="res://objects/conker/Conker.aseprite" id="1_1s2wf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y3a0m"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_otvn3"]
+radius = 35.0
+
+[node name="Conker" type="RigidBody2D"]
+collision_layer = 65
+collision_mask = 65
+mass = 0.1
+lock_rotation = true
+linear_damp_mode = 1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y3a0m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_1s2wf")
+autoplay = "default"
+frame_progress = 0.784019
+
+[node name="DamageZone" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+shape = SubResource("CircleShape2D_otvn3")
