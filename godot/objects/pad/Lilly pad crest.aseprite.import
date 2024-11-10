@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://ceshubobmrqyf"
+path="res://.godot/imported/Lilly pad crest.aseprite-acebddcf34053fa8e93330a500b1a4b4.res"
+
+[deps]
+
+source_file="res://objects/pad/Lilly pad crest.aseprite"
+dest_files=["res://.godot/imported/Lilly pad crest.aseprite-acebddcf34053fa8e93330a500b1a4b4.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=true
+sheet_type="Packed"

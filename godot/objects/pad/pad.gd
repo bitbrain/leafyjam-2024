@@ -12,6 +12,7 @@ signal sinking
 @onready var steerable_area: Area2D = $SteerableArea
 @onready var sinking_timer: Timer = $SinkingTimer
 @onready var spot: Marker2D = $Spot
+@onready var crest_animated_sprite_2d: AnimatedSprite2D = %CrestAnimatedSprite2D
 
 
 var is_sinking = false

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbvrju86r3jwp"]
+[gd_scene load_steps=8 format=3 uid="uid://bbvrju86r3jwp"]
 
 [ext_resource type="Script" path="res://objects/pad/pad.gd" id="1_xgvsb"]
 [ext_resource type="PackedScene" uid="uid://dxa6xrhmewvcr" path="res://spawn/auto_freeable.tscn" id="2_dxt5i"]
 [ext_resource type="SpriteFrames" uid="uid://ct3vlm42tlhwu" path="res://objects/pad/Lilly pad.aseprite" id="2_ht6ll"]
+[ext_resource type="SpriteFrames" uid="uid://ceshubobmrqyf" path="res://objects/pad/Lilly pad crest.aseprite" id="3_op1rp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8byo"]
 radius = 36.1248
@@ -36,6 +37,14 @@ position = Vector2(-1, -15)
 sprite_frames = ExtResource("2_ht6ll")
 animation = &"Clip"
 autoplay = "Neutral"
+
+[node name="CrestAnimatedSprite2D" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+unique_name_in_owner = true
+position = Vector2(0, 2)
+sprite_frames = ExtResource("3_op1rp")
+animation = &"Neutral"
+autoplay = "Neutral"
+frame_progress = 0.445706
 
 [node name="PushAwayCollectibles" type="StaticBody2D" parent="."]
 collision_layer = 64

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://walls/walls.gd" id="1_4ql0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_523mw"]
-size = Vector2(94, 425.5)
+size = Vector2(130, 641.75)
 
 [node name="Walls" type="Node2D"]
 script = ExtResource("1_4ql0n")
@@ -12,7 +12,7 @@ script = ExtResource("1_4ql0n")
 disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
-position = Vector2(-229, -1)
+position = Vector2(-217, 2)
 shape = SubResource("RectangleShape2D_523mw")
 
 [node name="Wall4" type="StaticBody2D" parent="."]
@@ -21,5 +21,5 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
-position = Vector2(249, 1)
+position = Vector2(210, -3)
 shape = SubResource("RectangleShape2D_523mw")

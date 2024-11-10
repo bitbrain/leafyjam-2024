@@ -21,7 +21,7 @@ radius = 60.0083
 radius = 60.407
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jweco"]
-radius = 60.0
+radius = 46.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xy0lv"]
 radius = 36.3456
@@ -50,6 +50,7 @@ position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_esspp")
 
 [node name="BoardingDetecor" type="Area2D" parent="."]
+position = Vector2(0, 13)
 collision_layer = 0
 collision_mask = 8
 
@@ -64,6 +65,7 @@ unique_name_in_owner = true
 shape = SubResource("CircleShape2D_a6anu")
 
 [node name="AcornDetector" type="Area2D" parent="."]
+position = Vector2(0, 13)
 collision_layer = 0
 collision_mask = 16
 
@@ -71,6 +73,7 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_2qu01")
 
 [node name="DamageDetector" type="Area2D" parent="."]
+position = Vector2(0, 13)
 collision_layer = 0
 collision_mask = 32
 
