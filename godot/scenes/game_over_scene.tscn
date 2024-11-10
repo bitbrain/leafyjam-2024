@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2dmue5b8xdu6"]
+[gd_scene load_steps=7 format=3 uid="uid://c2dmue5b8xdu6"]
 
 [ext_resource type="Script" path="res://scenes/game_over_scene.gd" id="1_qesbc"]
 [ext_resource type="AudioStream" uid="uid://dmugx8x0s08q7" path="res://audio/the_autumn_of_his_life.ogg" id="1_uxdl4"]
 [ext_resource type="Script" path="res://ui/overlays/fade_overlay.gd" id="2_h24yt"]
 [ext_resource type="FontFile" uid="uid://bh7mc8kkwafso" path="res://fonts/alkhemikal/alkhemikal-21.fnt" id="3_k15fo"]
 [ext_resource type="Texture2D" uid="uid://dsffv31bl7o7x" path="res://world/Top leaves.png" id="5_soi8d"]
+[ext_resource type="Material" uid="uid://bs640657sp562" path="res://shaders/crt_material.tres" id="6_7aowf"]
 
 [node name="GameOverScene" type="Node2D"]
 script = ExtResource("1_qesbc")
@@ -48,3 +49,11 @@ offset_bottom = 222.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_h24yt")
 fade_in_duration = 7.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("6_7aowf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

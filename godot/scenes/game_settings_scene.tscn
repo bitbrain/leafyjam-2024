@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://g4qhvbvdm62w"]
+[gd_scene load_steps=7 format=3 uid="uid://g4qhvbvdm62w"]
 
 [ext_resource type="Script" path="res://scenes/game_settings_scene.gd" id="1_3764u"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_w6tmj"]
 [ext_resource type="FontFile" uid="uid://bh7mc8kkwafso" path="res://fonts/alkhemikal/alkhemikal-21.fnt" id="2_ahong"]
 [ext_resource type="PackedScene" uid="uid://nbaodrlopo7y" path="res://ui/components/game_settings.tscn" id="2_qsqie"]
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="3_unbh4"]
+[ext_resource type="Material" uid="uid://bs640657sp562" path="res://shaders/crt_material.tres" id="6_88un1"]
 
 [node name="GameSettingsScene" type="Node2D"]
 script = ExtResource("1_3764u")
@@ -39,6 +40,14 @@ text = "return_to_main"
 [node name="FadeOverlay" parent="UI" instance=ExtResource("1_w6tmj")]
 unique_name_in_owner = true
 visible = false
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+material = ExtResource("6_88un1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 autoplay = true

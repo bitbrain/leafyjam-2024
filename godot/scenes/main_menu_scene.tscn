@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv2y18ye8j7o0"]
+[gd_scene load_steps=13 format=3 uid="uid://dv2y18ye8j7o0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu_scene.gd" id="1_1foie"]
 [ext_resource type="PackedScene" uid="uid://cik30de5gaaah" path="res://scenes/ingame_scene.tscn" id="2_nl5i6"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dmugx8x0s08q7" path="res://audio/the_autumn_of_his_life.ogg" id="8_0tty0"]
 [ext_resource type="Texture2D" uid="uid://cr7shpsvi21nh" path="res://world/World_Bottom leaves.png" id="9_wokty"]
 [ext_resource type="Texture2D" uid="uid://dsffv31bl7o7x" path="res://world/Top leaves.png" id="10_a6wbu"]
+[ext_resource type="Material" uid="uid://bs640657sp562" path="res://shaders/crt_material.tres" id="11_an87p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ikbh"]
 font_size = 8
@@ -114,3 +115,13 @@ offset_top = -110.0
 offset_right = 384.0
 offset_bottom = 322.0
 texture = ExtResource("10_a6wbu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("11_an87p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=34 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://bxtwtk4g5re56" path="res://audio/sounds/bbc_riverside-_nhu0500706.mp3" id="25_bc4fl"]
 [ext_resource type="SpriteFrames" uid="uid://dcow34n3pyyou" path="res://ui/Title screen frog.aseprite" id="25_r8rxi"]
 [ext_resource type="AudioStream" uid="uid://ic4rnpue0xqe" path="res://audio/sounds/bbc_forest-atm_nhu9679709.mp3" id="26_ttvtu"]
+[ext_resource type="Material" uid="uid://bs640657sp562" path="res://shaders/crt_material.tres" id="28_wcpy6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mi6by"]
 blend_mode = 1
@@ -245,7 +246,7 @@ offset_bottom = 185.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/Control"]
 sprite_frames = ExtResource("25_r8rxi")
-frame_progress = 0.717376
+frame_progress = 0.0595776
 flip_h = true
 
 [node name="Sounds" type="Node2D" parent="."]
@@ -261,3 +262,13 @@ stream = ExtResource("26_ttvtu")
 volume_db = -20.0
 autoplay = true
 bus = &"Nature"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("28_wcpy6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

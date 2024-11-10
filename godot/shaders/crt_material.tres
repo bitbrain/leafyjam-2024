@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bs640657sp562"]
+
+[ext_resource type="Shader" path="res://shaders/crt.gdshader" id="1_rf164"]
+
+[resource]
+shader = ExtResource("1_rf164")
+shader_parameter/resolution = Vector2(384, 216)
+shader_parameter/scan_line_amount = 0.327
+shader_parameter/warp_amount = 0.099
+shader_parameter/noise_amount = 0.04
+shader_parameter/interference_amount = 0.294
+shader_parameter/grille_amount = 0.069
+shader_parameter/grille_size = 2.498
+shader_parameter/vignette_amount = 0.964
+shader_parameter/vignette_intensity = 0.138
+shader_parameter/aberation_amount = 0.358
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -12.0
+shader_parameter/pixel_strength = -2.596
