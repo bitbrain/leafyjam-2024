@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx558emvn52ij"]
+[gd_scene load_steps=4 format=3 uid="uid://bx558emvn52ij"]
 
 [ext_resource type="Script" path="res://ui/acorn_count.gd" id="1_8cbco"]
-[ext_resource type="Texture2D" uid="uid://c881cx2sqlwkw" path="res://objects/acorn/Acorn_Acorn.png" id="1_a15pr"]
+[ext_resource type="SpriteFrames" uid="uid://dqyx1djfek7ju" path="res://ui/Acorn Icon.aseprite" id="2_3isdh"]
 [ext_resource type="FontFile" uid="uid://bh7mc8kkwafso" path="res://fonts/alkhemikal/alkhemikal-21.fnt" id="2_5ilpf"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3audd"]
-atlas = ExtResource("1_a15pr")
-region = Rect2(104, 104, 110, 112)
 
 [node name="AcornCount" type="Control"]
 layout_mode = 3
@@ -15,13 +11,12 @@ offset_right = 110.0
 offset_bottom = 112.0
 script = ExtResource("1_8cbco")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 2
-offset_right = 110.0
-offset_bottom = 112.0
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(28, 29)
 scale = Vector2(0.5, 0.5)
-texture = SubResource("AtlasTexture_3audd")
-stretch_mode = 2
+sprite_frames = ExtResource("2_3isdh")
+autoplay = "default"
+frame_progress = 0.0872311
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

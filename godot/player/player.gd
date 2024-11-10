@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 
-signal acorn_collected(position:Vector2)
+signal acorn_collected(acorn:Node2D)
 
 
 @export var ACCELERATION = 150
@@ -152,7 +152,7 @@ func _row() -> void:
 		
 		
 func _collect_acorn(acorn:Node2D) -> void:
-	acorn_collected.emit(acorn.global_position)
+	acorn_collected.emit(acorn)
 	acorn.queue_free()
 	
 	
