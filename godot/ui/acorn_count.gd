@@ -4,7 +4,7 @@ extends Control
 signal game_won
 
 
-@export var TOTAL_ACORNS_TO_WIN = 30
+@export var TOTAL_ACORNS_TO_WIN = 10
 
 var count = 0:
 	set(c):

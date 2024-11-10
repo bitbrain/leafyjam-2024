@@ -5,12 +5,12 @@
 [resource]
 shader = ExtResource("1_rf164")
 shader_parameter/resolution = Vector2(384, 216)
-shader_parameter/scan_line_amount = 0.327
+shader_parameter/scan_line_amount = 0.098
 shader_parameter/warp_amount = 0.099
-shader_parameter/noise_amount = 0.04
-shader_parameter/interference_amount = 0.294
-shader_parameter/grille_amount = 0.069
-shader_parameter/grille_size = 2.498
+shader_parameter/noise_amount = 0.016
+shader_parameter/interference_amount = 0.338
+shader_parameter/grille_amount = 0.109
+shader_parameter/grille_size = 2.28
 shader_parameter/vignette_amount = 0.964
 shader_parameter/vignette_intensity = 0.138
 shader_parameter/aberation_amount = 0.358
