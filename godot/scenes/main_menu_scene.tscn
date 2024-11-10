@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv2y18ye8j7o0"]
+[gd_scene load_steps=10 format=3 uid="uid://dv2y18ye8j7o0"]
 
 [ext_resource type="Script" path="res://scenes/main_menu_scene.gd" id="1_1foie"]
 [ext_resource type="PackedScene" uid="uid://cik30de5gaaah" path="res://scenes/ingame_scene.tscn" id="2_nl5i6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b4blrdjthcxnn" path="res://ui/components/game_logo.tscn" id="4_fnufg"]
 [ext_resource type="FontFile" uid="uid://cjwyigvgyltqh" path="res://fonts/alkhemikal/alkhemikal-12.fnt" id="5_aea3o"]
 [ext_resource type="Texture2D" uid="uid://cfo77i81w1vnk" path="res://ui/frog.png" id="6_64o6t"]
+[ext_resource type="AudioStream" uid="uid://dmugx8x0s08q7" path="res://audio/the_autumn_of_his_life.ogg" id="8_0tty0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ikbh"]
 font_size = 8
@@ -92,5 +93,6 @@ unique_name_in_owner = true
 visible = false
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_0tty0")
 autoplay = true
 bus = &"Music"
