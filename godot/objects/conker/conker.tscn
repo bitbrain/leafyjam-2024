@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsh38c4c3amhw"]
+[gd_scene load_steps=5 format=3 uid="uid://dsh38c4c3amhw"]
 
 [ext_resource type="SpriteFrames" uid="uid://dgf3rmo3qudmo" path="res://objects/conker/Conker.aseprite" id="1_1s2wf"]
+[ext_resource type="PackedScene" uid="uid://dxa6xrhmewvcr" path="res://spawn/auto_freeable.tscn" id="2_ujyfo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3a0m"]
 radius = 17.0
@@ -30,3 +31,5 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 shape = SubResource("CircleShape2D_otvn3")
+
+[node name="AutoFreeable" parent="." instance=ExtResource("2_ujyfo")]

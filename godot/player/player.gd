@@ -7,7 +7,7 @@ signal acorn_collected(acorn:Node2D)
 @export var ACCELERATION = 150
 @export var FRICTION = 1520
 @export var MAX_SPEED = 155
-@export var ROW_STRENGTH = 620.0
+@export var ROW_STRENGTH = 1000.0
 @export var ROW_INTERVAL = 1.0
 @export var STREAM_VELOCITY = Vector2(0, 2550)
 @export var DAMAGE = 6
@@ -170,8 +170,9 @@ func _row() -> void:
 		
 		
 func _collect_acorn(acorn:Node2D) -> void:
-	acorn_collected.emit(acorn)
-	acorn.queue_free()
+	if steerable:
+		acorn_collected.emit(acorn)
+		acorn.queue_free()
 	
 	
 func _damage_enter(damageable:Area2D) -> void:
