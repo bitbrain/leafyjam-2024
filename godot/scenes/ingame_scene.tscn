@@ -17,14 +17,14 @@
 [ext_resource type="SpriteFrames" uid="uid://bryll3oqyeyer" path="res://world/World_Sky reflecStion.res" id="7_2ue3a"]
 [ext_resource type="Script" path="res://spawn/spawnable.gd" id="7_klj8f"]
 [ext_resource type="SpriteFrames" uid="uid://jiwjw1vw6xox" path="res://world/World_Banks.res" id="8_ufj2a"]
-[ext_resource type="Texture2D" uid="uid://bsol8p8y1gafb" path="res://world/Bottom leaves.png" id="8_y4kph"]
-[ext_resource type="Texture2D" uid="uid://bbyi43cbereq3" path="res://world/Branches.png" id="9_1ycit"]
-[ext_resource type="Texture2D" uid="uid://dsffv31bl7o7x" path="res://world/Top leaves.png" id="10_eoelr"]
 [ext_resource type="PackedScene" uid="uid://ft4ilvc8bhvu" path="res://objects/acorn/acorn.tscn" id="14_xgwab"]
 [ext_resource type="PackedScene" uid="uid://dsh38c4c3amhw" path="res://objects/conker/conker.tscn" id="15_6mxt1"]
 [ext_resource type="PackedScene" uid="uid://crxqptxfb2d8n" path="res://objects/rock/rock.tscn" id="16_lpc6b"]
+[ext_resource type="SpriteFrames" uid="uid://bgftvgghc42nf" path="res://world/World_Bottom leaves.res" id="19_2rbkx"]
 [ext_resource type="FontFile" uid="uid://dbjkc16bvcrmu" path="res://fonts/alkhemikal/alkhemikal-16.fnt" id="19_8h351"]
 [ext_resource type="PackedScene" uid="uid://bx558emvn52ij" path="res://ui/acorn_count.tscn" id="20_56ce1"]
+[ext_resource type="SpriteFrames" uid="uid://dh85le3apf8hp" path="res://world/World_Branches.res" id="20_68ial"]
+[ext_resource type="SpriteFrames" uid="uid://wg3qlqg1wbym" path="res://world/World_Top leaves.res" id="21_god3b"]
 [ext_resource type="AudioStream" uid="uid://bxtwtk4g5re56" path="res://audio/sounds/bbc_riverside-_nhu0500706.mp3" id="25_bc4fl"]
 [ext_resource type="SpriteFrames" uid="uid://dcow34n3pyyou" path="res://ui/Title screen frog.aseprite" id="25_r8rxi"]
 [ext_resource type="AudioStream" uid="uid://ic4rnpue0xqe" path="res://audio/sounds/bbc_forest-atm_nhu9679709.mp3" id="26_ttvtu"]
@@ -182,33 +182,39 @@ player = NodePath("../Objects/Pad/Player")
 [node name="BottomLeaves" type="Parallax2D" parent="."]
 repeat_size = Vector2(0, 864)
 
-[node name="Sprite2D" type="Sprite2D" parent="BottomLeaves"]
-texture = ExtResource("8_y4kph")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BottomLeaves"]
+sprite_frames = ExtResource("19_2rbkx")
+frame_progress = 0.969126
 
-[node name="Sprite2D2" type="Sprite2D" parent="BottomLeaves"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="BottomLeaves"]
 position = Vector2(0, 432)
-texture = ExtResource("8_y4kph")
+sprite_frames = ExtResource("19_2rbkx")
+frame_progress = 0.969126
 
 [node name="Branches" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1, 1.1)
 repeat_size = Vector2(0, 864)
 
-[node name="Sprite2D" type="Sprite2D" parent="Branches"]
-texture = ExtResource("9_1ycit")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Branches"]
+sprite_frames = ExtResource("20_68ial")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Branches"]
-position = Vector2(0, 432)
-texture = ExtResource("9_1ycit")
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Branches"]
+position = Vector2(1, 469)
+sprite_frames = ExtResource("20_68ial")
 
 [node name="TopLeaves" type="Parallax2D" parent="."]
 repeat_size = Vector2(0, 864)
 
-[node name="Sprite2D" type="Sprite2D" parent="TopLeaves"]
-texture = ExtResource("10_eoelr")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TopLeaves"]
+sprite_frames = ExtResource("21_god3b")
+frame = 1
+frame_progress = 0.877223
 
-[node name="Sprite2D2" type="Sprite2D" parent="TopLeaves"]
-position = Vector2(1, 466)
-texture = ExtResource("10_eoelr")
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="TopLeaves"]
+position = Vector2(0, 467)
+sprite_frames = ExtResource("21_god3b")
+frame = 2
+frame_progress = 0.425029
 
 [node name="UI" type="CanvasLayer" parent="."]
 
