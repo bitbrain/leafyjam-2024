@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://bld60jdngvjwv"
+path="res://.godot/imported/Frog Sprite.aseprite-2cd42f45b5cdec78bb51bc24d70c5a91.res"
+
+[deps]
+
+source_file="res://player/Frog Sprite.aseprite"
+dest_files=["res://.godot/imported/Frog Sprite.aseprite-2cd42f45b5cdec78bb51bc24d70c5a91.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=true
+sheet_type="Packed"

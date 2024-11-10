@@ -14,7 +14,7 @@ signal acorn_collected(position:Vector2)
 
 @onready var steerable_detector: Area2D = $SteerableDetector
 @onready var boarding_detecor: Area2D = $BoardingDetecor
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var boarded_shape: CollisionShape2D = %BoardedShape
 @onready var swimming_shape: CollisionShape2D = %SwimmingShape
 @onready var acorn_detector: Area2D = $AcornDetector
