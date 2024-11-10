@@ -20,6 +20,8 @@ signal acorn_collected(position:Vector2)
 @onready var acorn_detector: Area2D = $AcornDetector
 
 
+enum AnimationState { ROW, ROW_WAIT, STAND }
+
 
 var input_vector = Vector2.ZERO
 var row_vector = Vector2.ZERO
@@ -28,6 +30,7 @@ var time_since_last_row = ROW_INTERVAL
 
 var steerable:Area2D
 var hopping = false
+var current_state = AnimationState.STAND
 
 
 func _ready() -> void:
@@ -35,6 +38,7 @@ func _ready() -> void:
 	steerable_detector.area_exited.connect(_on_steerable_exited)
 	boarding_detecor.area_entered.connect(_hop_on)
 	acorn_detector.body_entered.connect(_collect_acorn)
+	sprite_2d.animation_looped.connect(_on_animation_looped)
 	
 
 func move(input_vector:Vector2) -> void:
@@ -142,8 +146,28 @@ func _row() -> void:
 	if steerable:
 		var force = Vector2(row_vector.x * ROW_STRENGTH, max(0.0, row_vector.y * ROW_STRENGTH))
 		steerable.get_parent().apply_central_force(force)
+		play_animation(AnimationState.ROW)
 		
 		
-func _collect_acorn(acorn:RigidBody2D) -> void:
+func _collect_acorn(acorn:Node2D) -> void:
 	acorn_collected.emit(acorn.global_position)
 	acorn.queue_free()
+	
+	
+func play_animation(state: AnimationState):
+	current_state = state
+	match state:
+		AnimationState.ROW:
+			sprite_2d.play("Row")
+		AnimationState.ROW_WAIT:
+			sprite_2d.play("Row-wait")
+		AnimationState.STAND:
+			sprite_2d.play("Stand")
+
+
+func _on_animation_looped():
+	match current_state:
+		AnimationState.ROW:
+			play_animation(AnimationState.ROW_WAIT)
+		AnimationState.ROW_WAIT:
+			play_animation(AnimationState.STAND)
