@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://crxqptxfb2d8n"]
+[gd_scene load_steps=3 format=3 uid="uid://crxqptxfb2d8n"]
 
-[ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="1_u8mhc"]
 [ext_resource type="PackedScene" uid="uid://dxa6xrhmewvcr" path="res://spawn/auto_freeable.tscn" id="2_n1sjl"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_f3jtj"]
-radius = 18.2483
+[ext_resource type="SpriteFrames" uid="uid://clgi75f88114n" path="res://objects/rock/Rock.aseprite" id="2_r86n4"]
 
 [node name="Rock" type="StaticBody2D"]
+collision_layer = 65
+collision_mask = 65
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_u8mhc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_f3jtj")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-32, 7, -24, -9, -4, -17, 18, -19, 35, -6, 39, 4, 37, 24, 21, 37, 10, 37, 0, 33, -13, 40, -27, 31, -27, 26, -34, 21)
 
 [node name="AutoFreeable" parent="." instance=ExtResource("2_n1sjl")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_r86n4")
+autoplay = "default"
+frame_progress = 0.881113

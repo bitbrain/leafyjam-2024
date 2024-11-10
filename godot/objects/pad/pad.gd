@@ -5,7 +5,7 @@ signal sunk
 signal sinking
 
 
-@export var sinking_damage = 3
+@export var sinking_damage = 1
 
 
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -54,7 +54,7 @@ func _sink() -> void:
 	is_sinking = true
 	sinking.emit()
 	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(sprite_2d, "modulate:a", 0.0, 2.0).finished.connect(_finish_sinking)
+	tween.tween_property(sprite_2d, "modulate:a", 0.0, 0.5).finished.connect(_finish_sinking)
 	
 	
 func _finish_sinking() -> void:

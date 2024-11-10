@@ -14,7 +14,7 @@ signal acorn_dropped()
 @export var ROW_STRENGTH = 1000.0
 @export var ROW_INTERVAL = 1.0
 @export var STREAM_VELOCITY = Vector2(0, 2550)
-@export var DAMAGE = 6
+@export var DAMAGE = 15
 @export var DAMAGE_TICKRATE = 0.2:
 	set(dt):
 		DAMAGE_TICKRATE = dt
