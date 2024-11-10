@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://oxnaucckn13a"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_v8ddu"]
-[ext_resource type="SpriteFrames" uid="uid://bld60jdngvjwv" path="res://player/Frog Sprite.aseprite" id="2_eto42"]
+[ext_resource type="SpriteFrames" uid="uid://ch8drp0whfbb6" path="res://player/Frog.aseprite" id="2_s3i1h"]
 [ext_resource type="PackedScene" uid="uid://buoaycwvkf3jr" path="res://audio/sounds/splash_sound.tscn" id="3_y8f1w"]
 [ext_resource type="AudioStream" uid="uid://bvbq6e8fh48o4" path="res://audio/sounds/wet.mp3" id="4_bbt0v"]
 [ext_resource type="AudioStream" uid="uid://q7wx5kkxwyqc" path="res://audio/sounds/row.mp3" id="5_07mce"]
@@ -36,10 +36,10 @@ shape = SubResource("CircleShape2D_6jxj2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
-sprite_frames = ExtResource("2_eto42")
-animation = &"Launch"
+sprite_frames = ExtResource("2_s3i1h")
+animation = &"Stand"
 autoplay = "Stand"
-frame_progress = 0.999417
+frame_progress = 0.307991
 
 [node name="SteerableDetector" type="Area2D" parent="."]
 collision_layer = 4

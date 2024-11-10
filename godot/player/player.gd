@@ -37,7 +37,7 @@ signal acorn_dropped()
 @onready var row_sound: AudioStreamPlayer2D = $RowSound
 
 
-enum AnimationState { ROW, ROW_WAIT, STAND, JUMP, JUMP_LAUNCH, JUMP_LAND, SWIM }
+enum AnimationState { ROW, ROW_WAIT, STAND, JUMP, JUMP_LAUNCH, JUMP_LAND, SWIM, SWIM_IDLE }
 
 
 var input_vector = Vector2.ZERO
@@ -245,6 +245,8 @@ func play_animation(state: AnimationState):
 			sprite_2d.play_backwards("Crouch")
 		AnimationState.SWIM:
 			sprite_2d.play("Swim")
+		AnimationState.SWIM_IDLE:
+			sprite_2d.play("Swim-idle")
 
 func _on_animation_looped():
 	match current_state:
@@ -264,3 +266,13 @@ func _on_animation_looped():
 				play_animation(AnimationState.STAND)
 			else:
 				play_animation(AnimationState.SWIM)
+		AnimationState.SWIM:
+			if input_vector != Vector2.ZERO: 
+				play_animation(AnimationState.SWIM)
+			else:
+				play_animation(AnimationState.SWIM_IDLE)
+		AnimationState.SWIM_IDLE:
+			if input_vector != Vector2.ZERO: 
+				play_animation(AnimationState.SWIM)
+			else:
+				play_animation(AnimationState.SWIM_IDLE)
