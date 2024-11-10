@@ -40,7 +40,7 @@ preset = false
 
 [sub_resource type="Resource" id="Resource_e0l4a"]
 script = ExtResource("7_klj8f")
-probability = 0.7
+probability = 0.85
 scene = ExtResource("15_6mxt1")
 preset = false
 
@@ -52,7 +52,7 @@ preset = false
 
 [sub_resource type="Resource" id="Resource_xscjw"]
 script = ExtResource("7_klj8f")
-probability = 0.4
+probability = 0.3
 scene = ExtResource("16_lpc6b")
 preset = false
 
