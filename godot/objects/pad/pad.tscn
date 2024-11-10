@@ -22,11 +22,14 @@ linear_damp = 1.5
 angular_damp_mode = 1
 script = ExtResource("1_xgvsb")
 
+[node name="Spot" type="Marker2D" parent="."]
+position = Vector2(0, -20)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-32, -6, -10, -6, -10, -22, 11, -22, 11, -6, 31, -6, 24, -19, 13, -27, -7, -29, -22, -22, -32, -13)
+polygon = PackedVector2Array(-23, -13, -10, -13, -8, -27, 9, -26, 11, -13, 29, -13, 24, -19, 13, -27, -7, -29, -22, -22, -32, -13)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-30, -14, -11, -11, -11, -1, 11, -1, 11, -11, 30, -12, 31, 1, 28, 13, 14, 28, -6, 28, -23, 21, -30, 11, -32, 0)
+polygon = PackedVector2Array(-30, -14, -11, -14, -11, -11, 11, -11, 11, -14, 29, -14, 31, 1, 28, 13, 14, 28, -6, 28, -23, 21, -30, 11, -32, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -15)

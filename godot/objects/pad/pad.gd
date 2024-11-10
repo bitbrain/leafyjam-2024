@@ -11,6 +11,7 @@ signal sinking
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var steerable_area: Area2D = $SteerableArea
 @onready var sinking_timer: Timer = $SinkingTimer
+@onready var spot: Marker2D = $Spot
 
 
 var is_sinking = false
@@ -43,6 +44,10 @@ func _ready() -> void:
 		if touched and not is_sinking:
 			health -= sinking_damage
 		)
+		
+		
+func get_landing_position() -> Vector2:
+	return spot.global_position
 		
 		
 func _sink() -> void:

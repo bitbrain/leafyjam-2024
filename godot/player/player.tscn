@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bld60jdngvjwv" path="res://player/Frog Sprite.aseprite" id="2_eto42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6jxj2"]
-radius = 11.0
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_esspp"]
 
@@ -28,9 +28,9 @@ shape = SubResource("CircleShape2D_6jxj2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = ExtResource("2_eto42")
-animation = &"Stand"
+animation = &"Launch"
 autoplay = "Stand"
-frame_progress = 0.160251
+frame_progress = 0.712299
 
 [node name="SteerableDetector" type="Area2D" parent="."]
 collision_layer = 4

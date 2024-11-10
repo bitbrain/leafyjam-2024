@@ -20,7 +20,7 @@ signal acorn_collected(position:Vector2)
 @onready var acorn_detector: Area2D = $AcornDetector
 
 
-enum AnimationState { ROW, ROW_WAIT, STAND }
+enum AnimationState { ROW, ROW_WAIT, STAND, JUMP, JUMP_LAUNCH, JUMP_LAND, SWIM }
 
 
 var input_vector = Vector2.ZERO
@@ -47,6 +47,11 @@ func move(input_vector:Vector2) -> void:
 	if self.input_vector.x != 0:
 		sprite_2d.scale.x = 1 if input_vector.x < 0 else -1
 		
+
+# special method to follow the player perfectly
+# even when they jump between positions
+func get_custom_position() -> Vector2:
+	return global_position + sprite_2d.offset
 		
 func _process(delta: float) -> void:
 	time_since_last_row += delta
@@ -109,33 +114,29 @@ func _hop_on(area:Area2D) -> void:
 func _hop_off_steerable() -> void:
 	var objects = get_tree().get_first_node_in_group("Objects")
 	var camera = get_tree().get_first_node_in_group("Camera") as Camera2D
-	# HACK: avoid position smoothing to flicker screen
-	camera.position_smoothing_enabled = false
 	reparent(objects)
-	camera.reset_smoothing()
-	camera.position_smoothing_enabled = true
 	swimming_shape.disabled = false
 	boarded_shape.disabled = true
+	play_animation(AnimationState.SWIM)
 	
 	
 func _hop_on_steerable(steerable:Node2D) -> void:
 	var camera = get_tree().get_first_node_in_group("Camera") as Camera2D
 	# HACK: avoid position smoothing to flicker screen
-	camera.position_smoothing_enabled = false
 	reparent(steerable)
-	var position_delta = steerable.global_position - global_position
+	var position_delta = steerable.get_landing_position() - global_position
 	sprite_2d.offset = position_delta
 	sprite_2d.offset.y *= -1.0
 	sprite_2d.offset.x *= -sprite_2d.scale.x
 	var move_sprite_to_position_tween = create_tween()
-	move_sprite_to_position_tween.tween_property(sprite_2d, "offset", Vector2.ZERO, 0.25)\
+	move_sprite_to_position_tween.tween_property(sprite_2d, "offset", Vector2.ZERO, 0.7)\
+	.set_delay(0.4)\
 	.finished.connect(func():hopping = false)
-	global_position = steerable.global_position
-	camera.reset_smoothing()
-	camera.position_smoothing_enabled = true
+	global_position = steerable.get_landing_position()
 	swimming_shape.disabled = true
 	boarded_shape.disabled = false
 	time_since_last_row = ROW_INTERVAL
+	play_animation(AnimationState.JUMP)
 	
 	
 func _can_row() -> bool:
@@ -146,7 +147,8 @@ func _row() -> void:
 	if steerable:
 		var force = Vector2(row_vector.x * ROW_STRENGTH, max(0.0, row_vector.y * ROW_STRENGTH))
 		steerable.get_parent().apply_central_force(force)
-		play_animation(AnimationState.ROW)
+		if current_state != AnimationState.JUMP:
+			play_animation(AnimationState.ROW)
 		
 		
 func _collect_acorn(acorn:Node2D) -> void:
@@ -163,11 +165,30 @@ func play_animation(state: AnimationState):
 			sprite_2d.play("Row-wait")
 		AnimationState.STAND:
 			sprite_2d.play("Stand")
-
+		AnimationState.JUMP:
+			sprite_2d.play("Crouch")
+		AnimationState.JUMP_LAUNCH:
+			sprite_2d.play("Launch")
+		AnimationState.JUMP_LAND:
+			sprite_2d.play_backwards("Crouch")
+		AnimationState.SWIM:
+			sprite_2d.play("Swim")
 
 func _on_animation_looped():
 	match current_state:
 		AnimationState.ROW:
 			play_animation(AnimationState.ROW_WAIT)
 		AnimationState.ROW_WAIT:
-			play_animation(AnimationState.STAND)
+			if steerable:
+				play_animation(AnimationState.STAND)
+			else:
+				play_animation(AnimationState.SWIM)
+		AnimationState.JUMP:
+			play_animation(AnimationState.JUMP_LAUNCH)
+		AnimationState.JUMP_LAUNCH:
+			play_animation(AnimationState.JUMP_LAND)
+		AnimationState.JUMP_LAND:
+			if steerable:
+				play_animation(AnimationState.STAND)
+			else:
+				play_animation(AnimationState.SWIM)
