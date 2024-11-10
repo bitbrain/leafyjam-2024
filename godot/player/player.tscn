@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://oxnaucckn13a"]
+[gd_scene load_steps=14 format=3 uid="uid://oxnaucckn13a"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_v8ddu"]
 [ext_resource type="SpriteFrames" uid="uid://ch8drp0whfbb6" path="res://player/Frog.aseprite" id="2_s3i1h"]
 [ext_resource type="PackedScene" uid="uid://buoaycwvkf3jr" path="res://audio/sounds/splash_sound.tscn" id="3_y8f1w"]
 [ext_resource type="AudioStream" uid="uid://bvbq6e8fh48o4" path="res://audio/sounds/wet.mp3" id="4_bbt0v"]
 [ext_resource type="AudioStream" uid="uid://q7wx5kkxwyqc" path="res://audio/sounds/row.mp3" id="5_07mce"]
+[ext_resource type="AudioStream" uid="uid://rg7evb1afb8g" path="res://audio/sounds/plop.mp3" id="6_37akf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6jxj2"]
 radius = 8.0
@@ -97,4 +98,8 @@ volume_db = -10.0
 
 [node name="RowSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_07mce")
+volume_db = -5.0
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_37akf")
 volume_db = -5.0

@@ -35,6 +35,7 @@ signal acorn_dropped()
 @onready var splash_sound: Node2D = $SplashSound
 @onready var land_on_pad_sound: AudioStreamPlayer2D = $LandOnPadSound
 @onready var row_sound: AudioStreamPlayer2D = $RowSound
+@onready var collect_sound: AudioStreamPlayer2D = $CollectSound
 
 
 enum AnimationState { ROW, ROW_WAIT, STAND, JUMP, JUMP_LAUNCH, JUMP_LAND, SWIM, SWIM_IDLE }
@@ -189,7 +190,7 @@ func _hop_on_steerable(steerable:Node2D) -> void:
 	
 	
 func _can_row() -> bool:
-	return time_since_last_row >= ROW_INTERVAL
+	return time_since_last_row >= ROW_INTERVAL and steerable and not hopping
 
 
 func _row() -> void:
@@ -211,6 +212,8 @@ func _collect_acorn(acorn:Node2D) -> void:
 	if steerable:
 		acorn_count += 1
 		acorn_collected.emit(acorn)
+		collect_sound.pitch_scale = 0.9 + randf_range(0.0, 0.2)
+		collect_sound.play()
 		acorn.queue_free()
 	
 	
