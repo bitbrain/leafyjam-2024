@@ -1,15 +1,27 @@
 extends Control
 
+
+signal game_won
+
+
+@export var TOTAL_ACORNS_TO_WIN = 30
+
 var count = 0:
 	set(c):
+		if c != count and c == TOTAL_ACORNS_TO_WIN:
+			game_won.emit()
 		if c >= 0:
 			count = c
 			if label:
-				label.text = str(count)
+				label.text = str(count) + "/" + str(TOTAL_ACORNS_TO_WIN)
 
 
 @onready var label: Label = $Label
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+
+func _ready() -> void:
+	self.count = 0
 
 
 func drop_acorn() -> void:

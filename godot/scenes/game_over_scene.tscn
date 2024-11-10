@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2dmue5b8xdu6"]
+
+[ext_resource type="Script" path="res://scenes/game_over_scene.gd" id="1_qesbc"]
+[ext_resource type="AudioStream" uid="uid://dmugx8x0s08q7" path="res://audio/the_autumn_of_his_life.ogg" id="1_uxdl4"]
+[ext_resource type="Script" path="res://ui/overlays/fade_overlay.gd" id="2_h24yt"]
+[ext_resource type="FontFile" uid="uid://bh7mc8kkwafso" path="res://fonts/alkhemikal/alkhemikal-21.fnt" id="3_k15fo"]
+
+[node name="GameOverScene" type="Node2D"]
+script = ExtResource("1_qesbc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_uxdl4")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k15fo")
+text = "'A society grows great
+when old men plant trees
+in whose shade they shall never sit.'
+
+- Greek Proverb -"
+horizontal_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_left = -5.0
+offset_top = -7.0
+offset_right = 394.0
+offset_bottom = 222.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_h24yt")
+fade_in_duration = 7.0
