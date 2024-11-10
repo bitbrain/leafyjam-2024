@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://dcow34n3pyyou"
+path="res://.godot/imported/Title screen frog.aseprite-dc72e3be6109499ea72c25c023d811e6.res"
+
+[deps]
+
+source_file="res://ui/Title screen frog.aseprite"
+dest_files=["res://.godot/imported/Title screen frog.aseprite-dc72e3be6109499ea72c25c023d811e6.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=true
+sheet_type="Packed"

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="3_kf1us"]
 [ext_resource type="PackedScene" uid="uid://b4blrdjthcxnn" path="res://ui/components/game_logo.tscn" id="4_fnufg"]
 [ext_resource type="FontFile" uid="uid://cjwyigvgyltqh" path="res://fonts/alkhemikal/alkhemikal-12.fnt" id="5_aea3o"]
-[ext_resource type="Texture2D" uid="uid://cfo77i81w1vnk" path="res://ui/frog.png" id="6_64o6t"]
+[ext_resource type="SpriteFrames" uid="uid://dcow34n3pyyou" path="res://ui/Title screen frog.aseprite" id="6_ihvla"]
 [ext_resource type="AudioStream" uid="uid://dmugx8x0s08q7" path="res://audio/the_autumn_of_his_life.ogg" id="8_0tty0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ikbh"]
@@ -81,12 +81,15 @@ text = "game by bitbrain & punchcafe"
 label_settings = SubResource("LabelSettings_2ikbh")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UI/CenterContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="UI/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(130, 100)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("6_64o6t")
-flip_h = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/CenterContainer/HBoxContainer/Control"]
+position = Vector2(63, 38)
+sprite_frames = ExtResource("6_ihvla")
+autoplay = "default"
+frame_progress = 0.97558
 
 [node name="FadeOverlay" parent="UI" instance=ExtResource("3_kf1us")]
 unique_name_in_owner = true
