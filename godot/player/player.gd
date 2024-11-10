@@ -32,6 +32,9 @@ signal acorn_dropped()
 @onready var damage_detector: Area2D = $DamageDetector
 @onready var damage_timer: Timer = $DamageTimer
 @onready var gameobjects = get_tree().get_first_node_in_group("Objects")
+@onready var splash_sound: Node2D = $SplashSound
+@onready var land_on_pad_sound: AudioStreamPlayer2D = $LandOnPadSound
+@onready var row_sound: AudioStreamPlayer2D = $RowSound
 
 
 enum AnimationState { ROW, ROW_WAIT, STAND, JUMP, JUMP_LAUNCH, JUMP_LAND, SWIM }
@@ -158,6 +161,7 @@ func _hop_off_steerable() -> void:
 	play_animation(AnimationState.SWIM)
 	for i in range(0, acorn_count):
 		drop_acorn()
+	splash_sound.play()
 	
 	
 func _hop_on_steerable(steerable:Node2D) -> void:
@@ -171,7 +175,10 @@ func _hop_on_steerable(steerable:Node2D) -> void:
 	var move_sprite_to_position_tween = create_tween()
 	move_sprite_to_position_tween.tween_property(sprite_2d, "offset", Vector2.ZERO, 0.7)\
 	.set_delay(0.4)\
-	.finished.connect(func():hopping = false)
+	.finished.connect(func():
+				hopping = false
+				land_on_pad_sound.pitch_scale = 0.9 + randf_range(0.0, 0.2)
+				land_on_pad_sound.play())
 	global_position = steerable.get_landing_position()
 	for shape in swimming_shapes:
 		shape.disabled = true
@@ -191,6 +198,13 @@ func _row() -> void:
 		steerable.get_parent().apply_central_force(force)
 		if current_state != AnimationState.JUMP:
 			play_animation(AnimationState.ROW)
+			var row_sound_duplicated = row_sound.duplicate()
+			row_sound_duplicated.pitch_scale = 0.9 + randf_range(0.0, 0.2)
+			row_sound_duplicated.finished.connect(func():
+				row_sound_duplicated.queue_free()
+				)
+			add_child(row_sound_duplicated)
+			row_sound_duplicated.play()
 		
 		
 func _collect_acorn(acorn:Node2D) -> void:

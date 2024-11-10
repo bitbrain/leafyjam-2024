@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://oxnaucckn13a"]
+[gd_scene load_steps=13 format=3 uid="uid://oxnaucckn13a"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_v8ddu"]
 [ext_resource type="SpriteFrames" uid="uid://bld60jdngvjwv" path="res://player/Frog Sprite.aseprite" id="2_eto42"]
+[ext_resource type="PackedScene" uid="uid://buoaycwvkf3jr" path="res://audio/sounds/splash_sound.tscn" id="3_y8f1w"]
+[ext_resource type="AudioStream" uid="uid://bvbq6e8fh48o4" path="res://audio/sounds/wet.mp3" id="4_bbt0v"]
+[ext_resource type="AudioStream" uid="uid://q7wx5kkxwyqc" path="res://audio/sounds/row.mp3" id="5_07mce"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6jxj2"]
 radius = 8.0
@@ -82,3 +85,13 @@ disabled = true
 
 [node name="DamageTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="SplashSound" parent="." instance=ExtResource("3_y8f1w")]
+
+[node name="LandOnPadSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bbt0v")
+volume_db = -10.0
+
+[node name="RowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_07mce")
+volume_db = -5.0
