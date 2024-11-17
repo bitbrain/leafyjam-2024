@@ -32,6 +32,8 @@ jobs:
         run: |
           sudo apt install wine64
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_ENV
+      - name: Enable Aseprite for Exports
+        uses: neomura/setup-aseprite-cli-action@v1.0.1
       - name: Export Game using Godot
         uses: firebelley/godot-export@v6.0.0
         with:
